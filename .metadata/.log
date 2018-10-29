@@ -1,0 +1,50 @@
+!SESSION 2018-10-29 15:21:20.215 -----------------------------------------------
+eclipse.buildId=4.7.3.M20180330-0640
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=zh_TW
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/annie/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/annie/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-10-29 15:25:55.886
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:26:05.057
+!MESSAGE Starting the AWS toolkit core plugin...
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:26:06.842
+!MESSAGE No profile found: default
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:26:07.022
+!MESSAGE Monitoring content of /Users/annie/.aws/credentials
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:26:07.913
+!MESSAGE AWS toolkit core plugin initialized after 2857 milliseconds.
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:26:08.217
+!MESSAGE The current accountId is not found in the system. Switching to the default account.
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:26:12.361
+!MESSAGE Initialized a new Cognito identity us-east-1:3ab9b8de-667e-451a-9912-99b1adbe8c10
+!SESSION 2018-10-29 15:29:57.837 -----------------------------------------------
+eclipse.buildId=4.7.3.M20180330-0640
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=zh_TW
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/annie/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/annie/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-10-29 15:30:22.727
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:30:31.047
+!MESSAGE Starting the AWS toolkit core plugin...
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:30:31.516
+!MESSAGE Monitoring content of /Users/annie/.aws/credentials
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:30:32.118
+!MESSAGE AWS toolkit core plugin initialized after 1075 milliseconds.
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:30:32.263
+!MESSAGE Found valid identity id cache us-east-1:3ab9b8de-667e-451a-9912-99b1adbe8c10

@@ -1,0 +1,28 @@
+!SESSION 2018-10-29 15:28:40.357 -----------------------------------------------
+eclipse.buildId=4.7.3.M20180330-0640
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=zh_TW
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -keyring /Users/annie/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -data /Users/annie/Documents/FlightScanner/src -product org.eclipse.epp.package.java.product -keyring /Users/annie/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2018-10-29 15:28:44.710
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:28:53.449
+!MESSAGE Starting the AWS toolkit core plugin...
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:28:54.199
+!MESSAGE No profile found: default
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:28:54.228
+!MESSAGE Monitoring content of /Users/annie/.aws/credentials
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:28:54.721
+!MESSAGE AWS toolkit core plugin initialized after 1275 milliseconds.
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:28:54.878
+!MESSAGE The current accountId is not found in the system. Switching to the default account.
+
+!ENTRY com.amazonaws.eclipse.core 1 0 2018-10-29 15:28:56.232
+!MESSAGE Initialized a new Cognito identity us-east-1:bb19f017-fe35-4de8-af72-5c1e4e35b7ec
