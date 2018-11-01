@@ -30,15 +30,18 @@ public class Graph {
 	}
 
 	/**
-	 * Method to add edges within 2 cities
+	 * Method to add edges within 2 cities, checks whether there is existing edges
+	 * between 2 cities before connecting
 	 * 
 	 * @param firstCity
 	 * @param secondCity
 	 */
 	public void connect(City firstCity, City secondCity) {
-		firstCity.addNeighbor(secondCity);
-		secondCity.addNeighbor(firstCity);
-		edges++;
+		if (!firstCity.isNeighbor(secondCity)) {
+			firstCity.addNeighbor(secondCity);
+			secondCity.addNeighbor(firstCity);
+			edges++;
+		}
 	}
 
 	/**
@@ -61,14 +64,33 @@ public class Graph {
 	public double density() {
 		return (double) edges / size;
 	}
-	
+
+	/**
+	 * Get city by name
+	 * 
+	 * @param cityName
+	 * @return
+	 */
 	public City getCity(String cityName) {
-		for(City c:cities) {
-			if(c.getCityName().equals(cityName.trim())) {
+		for (City c : cities) {
+			if (c.getCityName().equals(cityName.trim())) {
 				return c;
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Get city by index
+	 * 
+	 * @param index
+	 * @return the city if inside graph, else return null
+	 */
+	public City getCity(int index) {
+		if (index < size)
+			return cities.get(index);
+		else
+			return null;
 	}
 
 	/**
@@ -77,6 +99,5 @@ public class Graph {
 	public void clear() {
 		cities.clear();
 	}
-	
 
 }

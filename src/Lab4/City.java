@@ -32,6 +32,18 @@ public class City
 	public void addNeighbor(City theCity) {
 		neighbors.add(theCity);
 	}
+	
+	/**
+	 * A function that tells whether another city is connected to this city
+	 * @param theCity
+	 * @return
+	 */
+	public boolean isNeighbor(City theCity) {
+		if (neighbors.contains(theCity))
+			return true;
+		else 
+			return false;
+	}
 	@Override
 	public String toString()
 	{
