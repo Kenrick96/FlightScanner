@@ -1,6 +1,11 @@
-package Lab4;
+package tests;
 
 import java.util.LinkedList;
+
+import Lab4.CPUTime;
+import Lab4.City;
+import Lab4.Graph;
+import Lab4.Searcher;
 
 /**
  * This class tests the Searcher and CPUTime classes to make sure they work correctly.

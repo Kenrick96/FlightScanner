@@ -1,4 +1,6 @@
-package Lab4;
+package tests;
+
+import Lab4.City;
 
 public class TestCity
 {
