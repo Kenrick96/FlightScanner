@@ -12,7 +12,8 @@ import java.util.Scanner;
  * @author annie
  *
  */
-public class GraphGenerator {
+public class GraphGenerator
+{
 	private int size;
 	private double density;
 	private int edges;
@@ -24,7 +25,8 @@ public class GraphGenerator {
 	 * @param size
 	 * @param density
 	 */
-	public GraphGenerator(int size, double density) {
+	public GraphGenerator(int size, double density)
+	{
 		this.size = size;
 		this.density = density;
 		edges = (int) Math.round(density * size * (size - 1));
@@ -38,7 +40,8 @@ public class GraphGenerator {
 	 * @param fileName
 	 * @throws FileNotFoundException
 	 */
-	public void readCities(String fileName) throws FileNotFoundException {
+	public void readCities(String fileName) throws FileNotFoundException
+	{
 		File f = new File(fileName);
 		Scanner s = new Scanner(f);
 		int count = 0;
@@ -64,9 +67,11 @@ public class GraphGenerator {
 		}
 	}
 
-	public void buildEdges() {
+	public void buildEdges()
+	{
 		Random r = new Random();
-		while (graph.edges() < edges) {
+		while (graph.edges() < edges)
+		{
 
 			// Get 2 random cities from graph
 			City a = graph.getCity(r.nextInt(size));
@@ -79,7 +84,8 @@ public class GraphGenerator {
 		}
 	}
 
-	public Graph getGraph() {
+	public Graph getGraph()
+	{
 		return graph;
 	}
 
