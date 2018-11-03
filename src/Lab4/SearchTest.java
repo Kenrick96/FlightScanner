@@ -32,7 +32,9 @@ public class SearchTest
 		Searcher testSearcher = new Searcher();
 		
 		LinkedList<City> testShortest = new LinkedList<City>();
-		testShortest = testSearcher.bfsShortestRoute(testCities[0], testCities[4]);
+		
+		CPUTime bfsTimeTaken = new CPUTime();
+		testShortest = testSearcher.bfsShortestRoute(testCities[0], testCities[4], bfsTimeTaken);
 		
 		if(testShortest == null)
 		{
@@ -45,9 +47,11 @@ public class SearchTest
 				System.out.print("->" + city);
 			}
 		}
+		System.out.println("\nBFS took:" + bfsTimeTaken.getCPUTimeTaken() + "ns");
 		System.out.println();
 		
-		testShortest = testSearcher.dfsShortestRoute(testCities[0], testCities[4]);
+		CPUTime dfsTimeTaken = new CPUTime();
+		testShortest = testSearcher.dfsShortestRoute(testCities[0], testCities[4], dfsTimeTaken);
 		
 		if(testShortest == null)
 		{
@@ -60,7 +64,7 @@ public class SearchTest
 				System.out.print("->" + city);
 			}
 		}
-		
+		System.out.println("\nDFS took:" + dfsTimeTaken.getCPUTimeTaken() + "ns");
 	}
 
 }

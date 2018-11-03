@@ -30,7 +30,7 @@ public class Searcher
 	 * @return shortestRoute between source and destination
 	 */
 	private LinkedList<City> constructRoute(City source, City destination)
-	{
+	{	
 		LinkedList<City> route = new LinkedList<City>();
 		City temp = destination;
 		
@@ -59,8 +59,10 @@ public class Searcher
 	 * @param destination
 	 * @return shortestRoute between source and destination
 	 */
-	public LinkedList<City> bfsShortestRoute(City source, City destination)
+	public LinkedList<City> bfsShortestRoute(City source, City destination, CPUTime cpuTimeTaken)
 	{
+		long startTime = System.nanoTime();
+		
 		// start from the source
 		source.visit();
 		L.addLast(source);
@@ -78,6 +80,9 @@ public class Searcher
 					
 					if(neighbour.equals(destination))
 					{
+						long endTime = System.nanoTime();
+						cpuTimeTaken.setCPUTimeTaken(endTime - startTime);
+						
 						return constructRoute(source, destination);
 					}
 					
@@ -87,6 +92,8 @@ public class Searcher
 			}
 		}
 		
+		long endTime = System.nanoTime();
+		cpuTimeTaken.setCPUTimeTaken(endTime - startTime);
 		return null; // no path found
 	}
 	
@@ -105,8 +112,9 @@ public class Searcher
 	 * @param destination
 	 * @return shortestRoute between source and destination
 	 */
-	public LinkedList<City> dfsShortestRoute(City source, City destination)
+	public LinkedList<City> dfsShortestRoute(City source, City destination, CPUTime cpuTimeTaken)
 	{
+		long startTime = System.nanoTime();
 		LinkedList<City> shortestRoute = null;
 		
 		// start from the source
@@ -150,6 +158,8 @@ public class Searcher
 			}
 		}
 		
+		long endTime = System.nanoTime();
+		cpuTimeTaken.setCPUTimeTaken(endTime - startTime);
 		return shortestRoute; // if no path found, null will be returned just like in bfs
 	}
 }

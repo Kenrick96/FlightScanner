@@ -3,8 +3,8 @@ package Lab4;
 import java.util.LinkedList;
 
 /**
- * This class represents each vertex in the graph. cityID is used to identify a
- * City
+ * This class represents each vertex in the graph. cityID is used to identify a City.
+ * last-updated: 2018-11-03
  * 
  * @author Annie, Jason
  *
