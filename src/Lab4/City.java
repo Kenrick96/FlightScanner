@@ -21,7 +21,7 @@ public class City
 	{
 		this.cityID = cityID;
 		this.cityName = cityName;
-		neighbors.clear();
+		neighbors = new ArrayList<City>();
 	}
 	
 	public int getCityID() { return cityID; }
