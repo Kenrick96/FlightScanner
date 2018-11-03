@@ -2,6 +2,13 @@ package Lab4;
 
 import java.util.LinkedList;
 
+/**
+ * This class tests the Searcher and CPUTime classes to make sure they work correctly.
+ * last-updated: 2018-11-03
+ * 
+ * @author Jason
+ *
+ */
 public class SearchTest
 {
 
