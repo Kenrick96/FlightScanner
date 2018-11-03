@@ -63,7 +63,7 @@ public class Graph {
 	}
 
 	public double density() {
-		return (double) edges / size;
+		return (double) 2 * edges / (size * (size - 1));
 	}
 
 	/**
@@ -100,10 +100,6 @@ public class Graph {
 	public void clear() {
 		cities.clear();
 	}
-
-	// public City BFS(City origin, City des) {
-	// Queue<City> toVisit= new Queue<City>();
-	// }
 
 	public String adjacencyList() {
 		String text = "";

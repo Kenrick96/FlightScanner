@@ -27,7 +27,7 @@ public class GraphGenerator {
 	public GraphGenerator(int size, double density) {
 		this.size = size;
 		this.density = density;
-		edges = (int) Math.round(size / density);
+		edges = (int) Math.round(density*size*(size-1));
 		graph = new Graph();
 	}
 
