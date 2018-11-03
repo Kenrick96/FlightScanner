@@ -1,6 +1,7 @@
 package Lab4;
 
 import java.util.ArrayList;
+import java.util.Queue;
 
 /**
  * This is the class that defines the functions of a graph
@@ -99,16 +100,24 @@ public class Graph {
 	public void clear() {
 		cities.clear();
 	}
-	
-//	public City BFS(City origin, City des) {
-//		
-//	}
+
+	// public City BFS(City origin, City des) {
+	// Queue<City> toVisit= new Queue<City>();
+	// }
+
+	public String adjacencyList() {
+		String text = "";
+		for (City c : cities) {
+			text = text + c.printNeighbors() + '\n';
+		}
+		return text;
+	}
 
 	@Override
 	public String toString() {
 		String text = "";
 		for (City c : cities) {
-			text = text + '\n' + c.toString();
+			text = text + c.toString() + '\n';
 		}
 		return text;
 	}

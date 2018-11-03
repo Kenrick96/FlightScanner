@@ -10,5 +10,6 @@ public class TestGraphGenerator {
 		graphGen.buildEdges();
 		Graph g= graphGen.getGraph();
 		System.out.println(g.toString());
+		System.out.println(g.adjacencyList());
 	}
 }
