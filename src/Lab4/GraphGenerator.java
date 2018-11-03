@@ -20,7 +20,7 @@ public class GraphGenerator
 	private Graph graph;
 
 	/**
-	 * Constuctor that takes the input of size and density desired to make a graph
+	 * Constructor that takes the input of size and density desired to make a graph
 	 * 
 	 * @param size
 	 * @param density
@@ -70,7 +70,7 @@ public class GraphGenerator
 	public void buildEdges()
 	{
 		Random r = new Random();
-		while (graph.edges() < edges)
+		while (graph.numOfEdges() < edges)
 		{
 
 			// Get 2 random cities from graph

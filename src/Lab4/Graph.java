@@ -13,13 +13,13 @@ public class Graph
 {
 	private LinkedList<City> cities;
 	private int size;
-	private int edges;
+	private int numOfEdges;
 
 	public Graph()
 	{
 		cities = new LinkedList<City>();
 		size = 0;
-		edges = 0;
+		numOfEdges = 0;
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class Graph
 	}
 
 	/**
-	 * Method to add edges within 2 cities, checks whether there is existing edges
+	 * Method to add numOfEdges within 2 cities, checks whether there is existing numOfEdges
 	 * between 2 cities before connecting
 	 * 
 	 * @param firstCity
@@ -46,7 +46,7 @@ public class Graph
 		{
 			firstCity.addNeighbor(secondCity);
 			secondCity.addNeighbor(firstCity);
-			edges++;
+			numOfEdges++;
 		}
 	}
 
@@ -66,13 +66,13 @@ public class Graph
 		return size;
 	}
 
-	public int edges()
+	public int numOfEdges()
 	{
-		return edges;
+		return numOfEdges;
 	}
 
 	public double density() {
-		return (double) 2 * edges / (size * (size - 1));
+		return (double) 2 * numOfEdges / (size * (size - 1));
 	}
 
 	/**
