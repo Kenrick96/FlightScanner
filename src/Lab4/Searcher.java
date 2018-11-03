@@ -89,5 +89,35 @@ public class Searcher
 		return null; // no path found
 	}
 	
-	
+	public LinkedList<City> dfsShortestRoute(City source, City destination)
+	{
+		// start from the source
+		source.visit();
+		L.addLast(source);
+		
+		while(!L.isEmpty())
+		{
+			City visitedCity = L.removeFirst();
+			
+			for(City neighbour: visitedCity.getNeighbors()) // BFS considers the neighbours of each node at each level
+			{
+				if(!neighbour.isVisited()) // prevent revisits
+				{
+					// each city keep track of visiting city for construction of shortest route
+					neighbour.setCityVisitedFrom(visitedCity); 
+					
+					if(neighbour.equals(destination))
+					{
+						return shortestRoute(source, destination);
+					}
+					
+					neighbour.visit(); // prevent revisits
+					
+					L.addFirst(neighbour); // place this City in stack to visit its neighbours later
+				}
+			}
+		}
+		
+		return null; // no path found
+	}
 }
