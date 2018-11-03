@@ -3,7 +3,8 @@ package Lab4;
 import java.util.LinkedList;
 
 /**
- * This class searches for the shortest path between a source and a destination city
+ * This class searches for the shortest path between a source and a destination city.
+ * last-updated: 2018-11-03
  * 
  * @author Jason
  *
@@ -28,27 +29,27 @@ public class Searcher
 	 * @param destination
 	 * @return shortestRoute between source and destination
 	 */
-	private LinkedList<City> shortestRoute(City source, City destination)
+	private LinkedList<City> constructRoute(City source, City destination)
 	{
-		LinkedList<City> shortestRoute = new LinkedList<City>();
+		LinkedList<City> route = new LinkedList<City>();
 		City temp = destination;
 		
 		while(!temp.equals(source))
 		{
-			shortestRoute.addFirst(temp);
+			route.addFirst(temp);
 			
 			temp = temp.getCityVisitedFrom();
 			
 		}
-		shortestRoute.addFirst(temp);
+		route.addFirst(temp);
 		
-		return shortestRoute;
+		return route;
 	}
 	
 	/**
 	 * This method returns the shortest route between a source and destination in a graph using Breadth-First Search.
 	 * Linked-List L is used as a queue for the order of visiting, as well as to prevent revisits.
-	 * This method makes use of shortestRoute() to return the shortest route in the right order
+	 * This method makes use of constructRoute() to return a route in the right order.
 	 * 
 	 * Assumptions:
 	 * 1. Graph is undirected
@@ -66,7 +67,7 @@ public class Searcher
 		
 		while(!L.isEmpty())
 		{
-			City visitedCity = L.removeFirst();
+			City visitedCity = L.removeFirst(); // dequeue
 			
 			for(City neighbour: visitedCity.getNeighbors()) // BFS considers the neighbours of each node at each level
 			{
@@ -77,11 +78,11 @@ public class Searcher
 					
 					if(neighbour.equals(destination))
 					{
-						return shortestRoute(source, destination);
+						return constructRoute(source, destination);
 					}
 					
 					neighbour.visit(); // prevent revisits
-					L.addLast(neighbour); // place this City in queue to visit its neighbours later
+					L.addLast(neighbour); // enqueue this City in queue to visit its neighbours later
 				}
 			}
 		}
@@ -89,17 +90,34 @@ public class Searcher
 		return null; // no path found
 	}
 	
+	/**
+	 * This method returns the shortest route between a source and destination in a graph using Depth-First Search.
+	 * Linked-List L is used as a stack for the order of visiting, as well as to prevent revisits.
+	 * This method makes use of constructRoute() to return a route in the right order.
+	 * This implementation of DFS is the iterative version, where an actual stack L is used,
+	 * unlike the recursive version that uses system stack.
+	 * 
+	 * Assumptions:
+	 * 1. Graph is undirected
+	 * 2. Graph is un-weighted i.e. all flights (edges) between Cities are of equal distance (weight)
+	 * 
+	 * @param source
+	 * @param destination
+	 * @return shortestRoute between source and destination
+	 */
 	public LinkedList<City> dfsShortestRoute(City source, City destination)
 	{
+		LinkedList<City> shortestRoute = null;
+		
 		// start from the source
 		source.visit();
 		L.addLast(source);
 		
 		while(!L.isEmpty())
 		{
-			City visitedCity = L.removeFirst();
+			City visitedCity = L.removeFirst(); // pop from stack
 			
-			for(City neighbour: visitedCity.getNeighbors()) // BFS considers the neighbours of each node at each level
+			for(City neighbour: visitedCity.getNeighbors())
 			{
 				if(!neighbour.isVisited()) // prevent revisits
 				{
@@ -108,16 +126,30 @@ public class Searcher
 					
 					if(neighbour.equals(destination))
 					{
-						return shortestRoute(source, destination);
+						LinkedList<City> possibleShortest = constructRoute(source, destination);
+						
+						if(shortestRoute == null || (possibleShortest.size() < shortestRoute.size()))
+						{
+							shortestRoute = possibleShortest;
+						}
+
 					}
 					
 					neighbour.visit(); // prevent revisits
 					
-					L.addFirst(neighbour); // place this City in stack to visit its neighbours later
+					 // if this neighbouring City is already in Stack, remove it
+					for(City cityToBeVisited: L)
+					{
+						if(neighbour == cityToBeVisited)
+						{
+							L.remove(cityToBeVisited);
+						}
+					}
+					L.addFirst(neighbour); // push this City onto stack to visit its neighbours later
 				}
 			}
 		}
 		
-		return null; // no path found
+		return shortestRoute; // if no path found, null will be returned just like in bfs
 	}
 }

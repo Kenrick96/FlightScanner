@@ -2,7 +2,7 @@ package Lab4;
 
 import java.util.LinkedList;
 
-public class TestBFS
+public class SearchTest
 {
 
 	public static void main(String[] args)
@@ -25,14 +25,29 @@ public class TestBFS
 		// connecting cities below
 		testGraph.connect(testCities[0], testCities[1]);
 		testGraph.connect(testCities[0], testCities[2]);
-		testGraph.connect(testCities[0], testCities[3]);
 		testGraph.connect(testCities[1], testCities[3]);
-		testGraph.connect(testCities[3], testCities[4]);
+		testGraph.connect(testCities[1], testCities[4]);
+		testGraph.connect(testCities[2], testCities[4]);
 		
 		Searcher testSearcher = new Searcher();
 		
 		LinkedList<City> testShortest = new LinkedList<City>();
 		testShortest = testSearcher.bfsShortestRoute(testCities[0], testCities[4]);
+		
+		if(testShortest == null)
+		{
+			System.out.println("no path found");
+		}
+		else
+		{
+			for(City city: testShortest)
+			{
+				System.out.print("->" + city);
+			}
+		}
+		System.out.println();
+		
+		testShortest = testSearcher.dfsShortestRoute(testCities[0], testCities[4]);
 		
 		if(testShortest == null)
 		{
