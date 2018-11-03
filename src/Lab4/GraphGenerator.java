@@ -27,7 +27,7 @@ public class GraphGenerator {
 	public GraphGenerator(int size, double density) {
 		this.size = size;
 		this.density = density;
-		edges = (int) Math.round(density*size*(size-1));
+		edges = (int) Math.round(density * size * (size - 1));
 		graph = new Graph();
 	}
 
@@ -44,13 +44,16 @@ public class GraphGenerator {
 		int count = 0;
 		while (count < size) {
 			if (s.hasNextLine()) {
-				Scanner lineScan = new Scanner(s.nextLine());
+				String line =s.nextLine();
+				Scanner lineScan = new Scanner(line);
 				int cityID;
 				String cityName;
-				if (s.hasNextInt()) {
-					cityID = s.nextInt();
-					if (s.hasNext()) {
-						cityName = s.next();
+				if (lineScan.hasNextInt()) {
+					cityID = lineScan.nextInt();
+					if (lineScan.hasNext()) {
+						cityName = lineScan.next();
+						if (lineScan.hasNext())
+							cityName = cityName + " " + lineScan.next();
 						City newCity = new City(cityID, cityName);
 						if (newCity != null)
 							graph.addCity(newCity);
