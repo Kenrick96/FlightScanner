@@ -35,18 +35,15 @@ public class Searcher
 	
 	public LinkedList<City> bfsShortestRoute(City source, City destination)
 	{
+		source.visit();
 		L.addLast(source);
 		
 		while(!L.isEmpty())
 		{
 			City visitedCity = L.removeFirst();
-			visitedCity.visit();
 			
-			LinkedList<City> neighbours = visitedCity.getNeighbors();
-			
-			for(City neighbour: neighbours)
+			for(City neighbour: visitedCity.getNeighbors())
 			{
-				
 				if(!neighbour.isVisited())
 				{
 					neighbour.setCityVisitedFrom(visitedCity);
@@ -56,6 +53,7 @@ public class Searcher
 						return shortestRoute(source, destination);
 					}
 					
+					neighbour.visit();
 					L.addLast(neighbour);
 				}
 			}
