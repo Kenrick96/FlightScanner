@@ -51,7 +51,9 @@ public class GraphGenerator {
 					cityID = s.nextInt();
 					if (s.hasNext()) {
 						cityName = s.next();
-						graph.addCity(new City(cityID, cityName));
+						City newCity = new City(cityID, cityName);
+						if (newCity != null)
+							graph.addCity(newCity);
 						count++;
 					}
 				}
@@ -72,6 +74,10 @@ public class GraphGenerator {
 				graph.connect(a, b);
 
 		}
+	}
+
+	public Graph getGraph() {
+		return graph;
 	}
 
 }

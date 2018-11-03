@@ -100,4 +100,13 @@ public class Graph {
 		cities.clear();
 	}
 
+	@Override
+	public String toString() {
+		String text = "";
+		for (City c : cities) {
+			text = text + '\n' + c.toString();
+		}
+		return text;
+	}
+
 }
