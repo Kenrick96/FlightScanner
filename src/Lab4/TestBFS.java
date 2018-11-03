@@ -34,7 +34,7 @@ public class TestBFS
 		LinkedList<City> testShortest = new LinkedList<City>();
 		testShortest = testSearcher.bfsShortestRoute(testCities[0], testCities[4]);
 		
-		if(testShortest != null)
+		if(testShortest == null)
 		{
 			System.out.println("no path found");
 		}
@@ -42,7 +42,7 @@ public class TestBFS
 		{
 			for(City city: testShortest)
 			{
-				System.out.println("->" + city);
+				System.out.print("->" + city);
 			}
 		}
 		

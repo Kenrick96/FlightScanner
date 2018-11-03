@@ -16,6 +16,8 @@ public class Searcher
 	
 	private LinkedList<City> shortestRoute(City source, City destination)
 	{
+		
+		
 		LinkedList<City> shortestRoute = new LinkedList<City>();
 		City temp = destination;
 		
@@ -33,7 +35,6 @@ public class Searcher
 	
 	public LinkedList<City> bfsShortestRoute(City source, City destination)
 	{
-		source.visit();
 		L.addLast(source);
 		
 		while(!L.isEmpty())
@@ -41,18 +42,21 @@ public class Searcher
 			City visitedCity = L.removeFirst();
 			visitedCity.visit();
 			
-			for(City neighbour: L)
+			LinkedList<City> neighbours = visitedCity.getNeighbors();
+			
+			for(City neighbour: neighbours)
 			{
+				
 				if(!neighbour.isVisited())
 				{
-					neighbour.visit();
 					neighbour.setCityVisitedFrom(visitedCity);
-					L.addLast(neighbour);
 					
 					if(neighbour.equals(destination))
 					{
 						return shortestRoute(source, destination);
 					}
+					
+					L.addLast(neighbour);
 				}
 			}
 		}
