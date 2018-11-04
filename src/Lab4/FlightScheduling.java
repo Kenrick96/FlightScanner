@@ -20,7 +20,10 @@ import java.util.LinkedList;
  */
 public class FlightScheduling
 {
-	public static final String CITIES_FILE_PATH =  "C:\\Users\\steph\\Documents\\New folder\\FlightScanner\\src\\Lab4\\World Cities.csv";
+	// Jason's file path: C:\Users\jason\Documents\NTU\Academic\1 SCSE\Year_2_Semester_1\CZ2001 Algorithms\3 Labs\Lab 4\FlightScanner\src\Lab4
+	// Stephen's file path: C:\\Users\\steph\\Documents\\New folder\\FlightScanner\\src\\Lab4\\World Cities.csv
+	
+	public static final String CITIES_FILE_PATH =  "";
 	
 //	public static final String SOURCE_CITY = "Kirovohrad";
 //	public static final String DESTINATION_CITY = "Kiliya";
@@ -37,17 +40,21 @@ public class FlightScheduling
 	{
 		GraphGenerator graphGenerator;
 		Searcher searcher = new Searcher();
-		ArrayList<Result> results = new ArrayList<Result>();
+		ArrayList<Result> resultsBFS = new ArrayList<Result>();
+		ArrayList<Result> resultsDFS = new ArrayList<Result>();
 		
 		LinkedList<City> inputCities = IOHandler.readCitiesFile(CITIES_FILE_PATH, MAX_GRAPH_SIZE);
 		
 		for(int graphSize = MIN_GRAPH_SIZE; graphSize <= MAX_GRAPH_SIZE; graphSize += GRAPH_SIZE_INCREMENT)
-		{graphGenerator = new GraphGenerator(graphSize,inputCities);
+		{
+			graphGenerator = new GraphGenerator(graphSize,inputCities);
+			
 			for(double graphDensity = MIN_GRAPH_DENSITY; 
 					graphDensity <= MAX_GRAPH_DENSITY; graphDensity += GRAPH_DENSITY_INCREMENT)
 			{
 				System.out.println("For graph of size: " + graphSize + " , density: " + graphDensity);
 				
+				// start of graph generation
 				graphGenerator.setGraphDensity(graphDensity);
 				Graph graph = graphGenerator.generateGraph();
 				graph.printGraph();
@@ -56,30 +63,59 @@ public class FlightScheduling
 				
 				System.out.println("Graph " + graphID + " [number of cities: " + graphSize + 
 						", number of non-stop flights: " + graph.numOfEdges() + "]");
+				// end of graph generation
 				
-				Result newResult = new Result(graph.size(),graph.density());
+				// start of BFS
+				Result newResultBFS = new Result(graph.size(),graph.density());
 				
-				LinkedList<City> shortestRoute = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
-														graph.getCity(0), newResult);
+				LinkedList<City> shortestRouteBFS = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
+														graph.getCity(0), newResultBFS);
 				
-				if(shortestRoute == null)
+				if(shortestRouteBFS == null)
 				{
 					System.out.println("no path found");
 				}
 				else
 				{
-					newResult.foundPath();
+					newResultBFS.foundPath();
 					
-					for(City city: shortestRoute)
+					for(City city: shortestRouteBFS)
 					{
 						System.out.print("->" + city);
 						
 					}
 				}
-				System.out.println("\nSearch time: " + newResult.getSearchTime() + "ns\n");
+				System.out.println("\nSearch time: " + newResultBFS.getSearchTime() + "ns\n");
 				
-				results.add(newResult);
+				resultsBFS.add(newResultBFS);
 				graph.resetCitiesVisited();
+				// end of BFS
+				
+				// start of DFS
+				Result newResultDFS = new Result(graph.size(),graph.density());
+				
+				LinkedList<City> shortestRouteDFS = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
+														graph.getCity(0), newResultDFS);
+				
+				if(shortestRouteDFS == null)
+				{
+					System.out.println("no path found");
+				}
+				else
+				{
+					newResultDFS.foundPath();
+					
+					for(City city: shortestRouteDFS)
+					{
+						System.out.print("->" + city);
+						
+					}
+				}
+				System.out.println("\nSearch time: " + newResultDFS.getSearchTime() + "ns\n");
+				
+				resultsDFS.add(newResultDFS);
+				graph.resetCitiesVisited();
+				// end of DFS
 			}
 		}
 	}

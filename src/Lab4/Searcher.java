@@ -151,13 +151,8 @@ public class Searcher
 					neighbour.visit(); // prevent revisits
 					
 					 // if this neighbouring City is already in Stack, remove it
-					for(City cityToBeVisited: L)
-					{
-						if(neighbour == cityToBeVisited)
-						{
-							L.remove(cityToBeVisited);
-						}
-					}
+					if(L.contains(neighbour))
+						L.remove(neighbour);
 					L.addFirst(neighbour); // push this City onto stack to visit its neighbours later
 				}
 			}
