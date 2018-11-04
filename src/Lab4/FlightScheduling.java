@@ -20,17 +20,17 @@ import java.util.LinkedList;
  */
 public class FlightScheduling
 {
-	// Jason's file path: C:\Users\jason\Documents\NTU\Academic\1 SCSE\Year_2_Semester_1\CZ2001 Algorithms\3 Labs\Lab 4\FlightScanner\src\Lab4
+	// Jason's file path: C:\Users\jason\Documents\NTU\Academic\1 SCSE\Year_2_Semester_1\CZ2001 Algorithms\3 Labs\Lab 4\FlightScanner\src\Lab4\World Cities.csv
 	// Stephen's file path: C:\\Users\\steph\\Documents\\New folder\\FlightScanner\\src\\Lab4\\World Cities.csv
 	
-	public static final String CITIES_FILE_PATH =  "";
+	public static final String CITIES_FILE_PATH =  "C:\\Users\\jason\\Documents\\NTU\\Academic\\1 SCSE\\Year_2_Semester_1\\CZ2001 Algorithms\\3 Labs\\Lab 4\\FlightScanner\\src\\Lab4\\World Cities.csv";
 	
 //	public static final String SOURCE_CITY = "Kirovohrad";
 //	public static final String DESTINATION_CITY = "Kiliya";
 	
-	public static final int MIN_GRAPH_SIZE = 10;
-	public static final int MAX_GRAPH_SIZE = 20;
-	public static final int GRAPH_SIZE_INCREMENT = 10;
+	public static final int MIN_GRAPH_SIZE = 100;
+	public static final int MAX_GRAPH_SIZE = 1000;
+	public static final int GRAPH_SIZE_INCREMENT = 100;
 	
 	public static final double MIN_GRAPH_DENSITY = 0.1;
 	public static final double MAX_GRAPH_DENSITY = 1;
@@ -40,6 +40,8 @@ public class FlightScheduling
 	{
 		GraphGenerator graphGenerator;
 		Searcher searcher = new Searcher();
+		
+		// These 2 Array Lists hold results of searhing using BFS and DFS
 		ArrayList<Result> resultsBFS = new ArrayList<Result>();
 		ArrayList<Result> resultsDFS = new ArrayList<Result>();
 		
@@ -57,7 +59,7 @@ public class FlightScheduling
 				// start of graph generation
 				graphGenerator.setGraphDensity(graphDensity);
 				Graph graph = graphGenerator.generateGraph();
-				graph.printGraph();
+//				graph.printGraph();
 				
 				String graphID = graphSize/GRAPH_SIZE_INCREMENT + "-" + (int)(graphDensity/MIN_GRAPH_DENSITY);
 				
@@ -118,5 +120,7 @@ public class FlightScheduling
 				// end of DFS
 			}
 		}
+		
+		// to-do: output result in excel
 	}
 }

@@ -107,7 +107,9 @@ public class GraphGenerator
 	// }
 
 	/**
-	 * mind-blowing good method
+	 * This method increases the number of edges to the number required.
+	 * So, for a graph of the same size, if the density required is increased,
+	 * more edges would be added TO THE SAME GRAPH, instead of generating a new graph from scratch
 	 * 
 	 */
 	public void buildEdges()
