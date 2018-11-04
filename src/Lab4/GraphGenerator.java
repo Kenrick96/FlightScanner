@@ -15,8 +15,8 @@ import java.util.Scanner;
 public class GraphGenerator
 {
 	private int size;
-	private double density;
-	private int edges;
+	// private double density;
+	private int requiredNumOfEdges;
 	private Graph graph;
 
 	/**
@@ -28,8 +28,8 @@ public class GraphGenerator
 	public GraphGenerator(int size, double density)
 	{
 		this.size = size;
-		this.density = density;
-		edges = (int) Math.round(density * size * (size - 1));
+		// this.density = density;
+		requiredNumOfEdges = (int) Math.round(density * size * (size - 1));
 		graph = new Graph();
 	}
 
@@ -74,7 +74,7 @@ public class GraphGenerator
 	public void buildEdges()
 	{
 		Random r = new Random();
-		while (graph.numOfEdges() < edges)
+		while (graph.numOfEdges() < requiredNumOfEdges)
 		{
 
 			// Get 2 random cities from graph

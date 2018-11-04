@@ -1,7 +1,6 @@
 package Lab4;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * This is the class that defines the functions of a graph. The implementation
