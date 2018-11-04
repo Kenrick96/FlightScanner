@@ -54,12 +54,9 @@ public class Graph
 	 */
 	public void connect(City firstCity, City secondCity)
 	{
-		if (!firstCity.isNeighbor(secondCity))
-		{
 			firstCity.addNeighbor(secondCity);
 			secondCity.addNeighbor(firstCity);
 			numOfEdges++;
-		}
 	}
 
 	/**
@@ -139,9 +136,19 @@ public class Graph
 		return text;
 	}
 	
-	public City retRandomCity()
-	{ Random r = new Random();
-		return cities.get(r.nextInt(size));
+	public void printGraph()
+	{   System.out.print(String.format("%-30s", "Cities"));
+		for(int i=0;i<size;i++)
+			System.out.print(String.format("|%-30s|",cities.get(i).getCityName()));
+		System.out.println("\n");
+		for(int i=0;i<size;i++)
+		{
+			 System.out.print(String.format("%-30s", cities.get(i).getCityName()));
+				for(int j=0;j<size;j++)
+					System.out.print(String.format("|%-30s|",cities.get(i).isNeighbor(cities.get(j))));
+				System.out.println("\n");
+		}
+		
 	}
 
 }

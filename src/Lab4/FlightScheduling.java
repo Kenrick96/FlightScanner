@@ -20,8 +20,7 @@ import java.util.LinkedList;
  */
 public class FlightScheduling
 {
-	public static final String CITIES_FILE_PATH =  "C:\\Users\\jason\\Documents\\NTU\\Academic\\1 SCSE\\"
-			+ "Year_2_Semester_1\\CZ2001 Algorithms\\3 Labs\\Lab 4\\FlightScanner\\src\\Lab4\\World Cities.csv";
+	public static final String CITIES_FILE_PATH =  "C:\\Users\\steph\\Documents\\New folder\\FlightScanner\\src\\Lab4\\World Cities.csv";
 	
 //	public static final String SOURCE_CITY = "Kirovohrad";
 //	public static final String DESTINATION_CITY = "Kiliya";
