@@ -18,6 +18,9 @@ import java.util.LinkedList;
  */
 public class FlightScheduling
 {
+	public static final String SOURCE_CITY = "Tokyo";
+	public static final String DESTINATION_CITY = "Shanghai";
+	
 	public static final int MIN_GRAPH_SIZE = 20;
 	public static final int MAX_GRAPH_SIZE = 100;
 	public static final int GRAPH_SIZE_INCREMENT = 10;
@@ -37,12 +40,16 @@ public class FlightScheduling
 			graphs = GraphVarying.generateGraphsVaryingDensity(graphSize, MIN_GRAPH_DENSITY, 
 					MAX_GRAPH_DENSITY, (int) Math.round(MAX_GRAPH_DENSITY/GRAPH_DENSITY_INCREMENT), "Cities.csv");
 			
-			for(Graph graph: graphs)
+			for(int graphIndex = 0; graphIndex <graphs.size(); ++graphIndex)
 			{
+				Graph graph = graphs.get(graphIndex);
+				
+				System.out.println("Graph " + (graphIndex + 1) + " [number of cities: " + graph.size() + 
+						", number of non-stop flights: " + graph.numOfEdges() + "]");
 				Result newResult = new Result(graph.size(),graph.density());
 				
-				LinkedList<City> shortestRoute = 
-						searcher.bfsShortestRoute(graph.getCity("Tokyo"), graph.getCity("Shanghai"), newResult);
+				LinkedList<City> shortestRoute = searcher.bfsShortestRoute(graph.getCity(SOURCE_CITY), 
+														graph.getCity(DESTINATION_CITY), newResult);
 				
 				if(shortestRoute == null)
 				{
