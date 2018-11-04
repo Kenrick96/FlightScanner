@@ -20,7 +20,7 @@ public class GraphGenerator
 	private int size;
 	// private double density;
 	boolean[][] bool;
-	private int requiredNumOfEdges;
+	private int requiredNumOfNonStopFlights;
 	private Graph graph;
 
 	/**
@@ -43,7 +43,7 @@ public class GraphGenerator
 
 	public void setGraphDensity(double density)
 	{
-		requiredNumOfEdges = (int) Math.round(density * size * (size - 1) / 2);
+		requiredNumOfNonStopFlights = (int) Math.round(density * size * (size - 1) / 2);
 	}
 
 	public void addCities(LinkedList<City> inputCities)
@@ -112,10 +112,10 @@ public class GraphGenerator
 	 * more edges would be added TO THE SAME GRAPH, instead of generating a new graph from scratch
 	 * 
 	 */
-	public void buildEdges()
+	public void buildNonStopFlights()
 	{
 		Random r = new Random();
-		while (graph.numOfEdges() < requiredNumOfEdges)
+		while (graph.numOfNonStopFlights() < requiredNumOfNonStopFlights)
 		{
 			int x = r.nextInt(size);
 			int y = r.nextInt(size);
@@ -146,7 +146,7 @@ public class GraphGenerator
 
 	public Graph generateGraph()
 	{
-		buildEdges();
+		buildNonStopFlights();
 
 		return graph;
 	}

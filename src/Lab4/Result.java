@@ -10,18 +10,18 @@ package Lab4;
 public class Result
 {
 	private int graphSize;
-	private double graphDensity;
+	private int numOfNonStopFlights;
 	
 	private boolean isPathFound = false;
 	private long searchTime;
 	
-	public Result(int graphSize, double graphDensity) { this.graphSize = graphSize; this.graphDensity = graphDensity; }
+	public Result(int graphSize, int numOfNonStopFlights) { this.graphSize = graphSize; this.numOfNonStopFlights = numOfNonStopFlights; }
 	
 	public int getGraphSize() { return graphSize; }
 	public void setGraphSize(int graphSize) { this.graphSize = graphSize; }
 	
-	public double getGraphDensity() { return graphDensity; }
-	public void setGraphDensity(double graphDensity) { this.graphDensity = graphDensity; }
+	public int getNumOfNonStopFlights() { return numOfNonStopFlights; }
+	public void setNumOfNonStopFlights(int numOfNonStopFlights) { this.numOfNonStopFlights = numOfNonStopFlights; }
 	
 	public void foundPath() { isPathFound = true; }
 	

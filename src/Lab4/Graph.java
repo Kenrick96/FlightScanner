@@ -22,13 +22,13 @@ public class Graph
 {
 	private LinkedList<City> cities;
 	private int size; // number of cities in graph
-	private int numOfEdges;
+	private int numOfNonStopFlights;
 
 	public Graph()
 	{
 		cities = new LinkedList<City>();
 		size = 0;
-		numOfEdges = 0;
+		numOfNonStopFlights = 0;
 	}
 
 	/**
@@ -43,8 +43,8 @@ public class Graph
 	}
 
 	/**
-	 * Method to add numOfEdges within 2 cities, checks whether there is existing
-	 * numOfEdges between 2 cities before connecting.
+	 * Method to add numOfNonStopFlights within 2 cities, checks whether there is existing
+	 * numOfNonStopFlights between 2 cities before connecting.
 	 * 
 	 * Undirected graph, so when we connect firstCity to secondCity, we also connect
 	 * secondCity to firstCity.
@@ -56,7 +56,7 @@ public class Graph
 	{
 			firstCity.addNeighbor(secondCity);
 			secondCity.addNeighbor(firstCity);
-			numOfEdges++;
+			numOfNonStopFlights++;
 	}
 
 	/**
@@ -75,14 +75,14 @@ public class Graph
 		return size;
 	}
 
-	public int numOfEdges()
+	public int numOfNonStopFlights()
 	{
-		return numOfEdges;
+		return numOfNonStopFlights;
 	}
 
 	public double density()
 	{
-		return (double) 2 * numOfEdges / (size * (size - 1));
+		return (double) 2 * numOfNonStopFlights / (size * (size - 1));
 	}
 
 	/**
