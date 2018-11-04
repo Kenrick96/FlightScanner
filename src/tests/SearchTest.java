@@ -45,7 +45,7 @@ public class SearchTest
 		
 		LinkedList<City> testShortest = new LinkedList<City>();
 		
-		Result bfsResult = new Result();
+		Result bfsResult = new Result(5, 0.5);
 		testShortest = testSearcher.bfsShortestRoute(testCities[0], testCities[4], bfsResult);
 		
 		if(testShortest == null)
@@ -62,7 +62,7 @@ public class SearchTest
 		System.out.println("\nBFS took:" + bfsResult.getSearchTime() + "ns");
 		System.out.println();
 		
-		Result dfsResult = new Result();
+		Result dfsResult = new Result(5, 0.5);
 		testShortest = testSearcher.dfsShortestRoute(testCities[0], testCities[4], dfsResult);
 		
 		if(testShortest == null)

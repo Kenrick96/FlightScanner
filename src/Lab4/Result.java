@@ -12,15 +12,18 @@ public class Result
 	private int graphSize;
 	private double graphDensity;
 	
+	private boolean isPathFound = false;
 	private long searchTime;
 	
-	public Result() {}
+	public Result(int graphSize, double graphDensity) { this.graphSize = graphSize; this.graphDensity = graphDensity; }
 	
 	public int getGraphSize() { return graphSize; }
 	public void setGraphSize(int graphSize) { this.graphSize = graphSize; }
 	
 	public double getGraphDensity() { return graphDensity; }
 	public void setGraphDensity(double graphDensity) { this.graphDensity = graphDensity; }
+	
+	public void foundPath() { isPathFound = true; }
 	
 	public long getSearchTime() { return searchTime; }
 	public void setSearchTime(long searchTime) { this.searchTime = searchTime; }
