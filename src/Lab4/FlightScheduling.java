@@ -26,9 +26,9 @@ public class FlightScheduling
 //	public static final String SOURCE_CITY = "Kirovohrad";
 //	public static final String DESTINATION_CITY = "Kiliya";
 	
-	public static final int MIN_GRAPH_SIZE = 100;
-	public static final int MAX_GRAPH_SIZE = 1000;
-	public static final int GRAPH_SIZE_INCREMENT = 100;
+	public static final int MIN_GRAPH_SIZE = 10;
+	public static final int MAX_GRAPH_SIZE = 100;
+	public static final int GRAPH_SIZE_INCREMENT = 10;
 	
 	public static final double MIN_GRAPH_DENSITY = 0.1;
 	public static final double MAX_GRAPH_DENSITY = 1;
@@ -50,7 +50,7 @@ public class FlightScheduling
 				
 				Graph graph = GraphVarying.generateGraph(graphSize, graphDensity, inputCities);
 				
-				int graphID = graphSize/GRAPH_SIZE_INCREMENT;
+				String graphID = graphSize/GRAPH_SIZE_INCREMENT + "-" + (int)(graphDensity/MIN_GRAPH_DENSITY);
 				
 				System.out.println("Graph " + graphID + " [number of cities: " + graphSize + 
 						", number of non-stop flights: " + graph.numOfEdges() + "]");

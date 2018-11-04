@@ -84,6 +84,7 @@ public class Searcher
 						long endTime = System.nanoTime();
 						result.setSearchTime(endTime - startTime);
 						
+						L.clear();
 						return constructRoute(source, destination);
 					}
 					
@@ -95,6 +96,8 @@ public class Searcher
 		
 		long endTime = System.nanoTime();
 		result.setSearchTime(endTime - startTime);
+		
+		L.clear();
 		return null; // no path found
 	}
 	
@@ -162,6 +165,8 @@ public class Searcher
 		
 		long endTime = System.nanoTime();
 		result.setSearchTime(endTime - startTime);
+		
+		L.clear();
 		return shortestRoute; // if no path found, null will be returned just like in bfs
 	}
 }

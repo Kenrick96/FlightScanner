@@ -1,6 +1,7 @@
 package Lab4;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * This is the class that defines the functions of a graph. The implementation
@@ -151,6 +152,11 @@ public class Graph
 			text = text + c.toString() + '\n';
 		}
 		return text;
+	}
+	
+	public City retRandomCity()
+	{ Random r = new Random();
+		return cities.get(r.nextInt(size));
 	}
 
 }
