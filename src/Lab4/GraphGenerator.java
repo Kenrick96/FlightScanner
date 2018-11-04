@@ -115,5 +115,17 @@ public class GraphGenerator
 	{
 		return graph;
 	}
+	
+	public void clearGraph()
+	{
+		graph.clear();
+	}
 
+	public Graph generateGraph(LinkedList<City> inputCities)
+	{
+		addCities(inputCities);
+		buildEdges();
+		
+		return graph;
+	}
 }

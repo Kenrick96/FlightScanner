@@ -36,6 +36,7 @@ public class FlightScheduling
 	
 	public static void main(String args[]) throws Exception // #YOLO
 	{
+		GraphGenerator graphGenerator;
 		Searcher searcher = new Searcher();
 		ArrayList<Result> results = new ArrayList<Result>();
 		
@@ -48,7 +49,8 @@ public class FlightScheduling
 			{
 				System.out.println("For graph of size: " + graphSize + " , density: " + graphDensity);
 				
-				Graph graph = GraphVarying.generateGraph(graphSize, graphDensity, inputCities);
+				graphGenerator = new GraphGenerator(graphSize, graphDensity);
+				Graph graph = graphGenerator.generateGraph(inputCities);
 				
 				String graphID = graphSize/GRAPH_SIZE_INCREMENT + "-" + (int)(graphDensity/MIN_GRAPH_DENSITY);
 				
