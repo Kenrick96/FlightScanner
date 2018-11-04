@@ -48,52 +48,52 @@ public class GraphGenerator
 		}
 	}
 	
-	/**
-	 * Add cities to graph from a external file, this functions reads line by line
-	 * until reaching the graph size
-	 * 
-	 * @param fileName
-	 * @throws FileNotFoundException
-	 */
-	public void readCities(String fileName) throws FileNotFoundException
-	{
-		File file = new File(fileName);
-		Scanner fileScanner = new Scanner(file);
-		
-		int cityCount = 0;
-		while (cityCount < size)
-		{
-			if (fileScanner.hasNextLine())
-			{
-				String line = fileScanner.nextLine();
-				
-				Scanner lineScanner = new Scanner(line);
-				
-				int cityID;
-				String cityName;
-				
-				if (lineScanner.hasNextInt())
-				{
-					cityID = lineScanner.nextInt();
-					
-					if (lineScanner.hasNext())
-					{
-						cityName = lineScanner.next();
-						
-						if (lineScanner.hasNext())
-							cityName = cityName + " " + lineScanner.next();
-						
-						City newCity = new City(cityID, cityName);
-						if (newCity != null)
-						{
-							graph.addCity(newCity);
-							++cityCount;
-						}
-					}
-				}
-			}
-		}
-	}
+//	/**
+//	 * Add cities to graph from a external file, this functions reads line by line
+//	 * until reaching the graph size
+//	 * 
+//	 * @param fileName
+//	 * @throws FileNotFoundException
+//	 */
+//	public void readCities(String fileName) throws FileNotFoundException
+//	{
+//		File file = new File(fileName);
+//		Scanner fileScanner = new Scanner(file);
+//		
+//		int cityCount = 0;
+//		while (cityCount < size)
+//		{
+//			if (fileScanner.hasNextLine())
+//			{
+//				String line = fileScanner.nextLine();
+//				
+//				Scanner lineScanner = new Scanner(line);
+//				
+//				int cityID;
+//				String cityName;
+//				
+//				if (lineScanner.hasNextInt())
+//				{
+//					cityID = lineScanner.nextInt();
+//					
+//					if (lineScanner.hasNext())
+//					{
+//						cityName = lineScanner.next();
+//						
+//						if (lineScanner.hasNext())
+//							cityName = cityName + " " + lineScanner.next();
+//						
+//						City newCity = new City(cityID, cityName);
+//						if (newCity != null)
+//						{
+//							graph.addCity(newCity);
+//							++cityCount;
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
 
 	public void buildEdges()
 	{	
