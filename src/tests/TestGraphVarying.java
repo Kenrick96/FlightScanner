@@ -15,8 +15,8 @@ public class TestGraphVarying
 
 		for (Graph g : graphs)
 		{
-			System.out.println(g);
-			System.out.println("Size: " + g.size() + " Density: " + g.density() + '\n');
+			// System.out.println(g);
+			System.out.println("Size: " + g.size() + " NumOfEdges: " + g.numOfEdges() + '\n');
 		}
 	}
 

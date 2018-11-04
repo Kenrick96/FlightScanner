@@ -72,11 +72,10 @@ public class GraphGenerator
 	}
 
 	public void buildEdges()
-	{
+	{	
 		Random r = new Random();
 		while (graph.numOfEdges() < requiredNumOfEdges)
 		{
-
 			// Get 2 random cities from graph
 			City a = graph.getCity(r.nextInt(size));
 			City b = graph.getCity(r.nextInt(size));

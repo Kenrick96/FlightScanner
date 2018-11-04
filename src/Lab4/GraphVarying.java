@@ -93,6 +93,7 @@ public class GraphVarying
 		GraphGenerator gg = new GraphGenerator(size, density);
 		
 		gg.readCities(file);
+		gg.buildEdges();
 		return gg.getGraph();
 	}
 
