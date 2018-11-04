@@ -88,7 +88,7 @@ public class GraphVarying
 	 * @param density
 	 * @throws FileNotFoundException
 	 */
-	private static Graph generateGraph(int size, double density, LinkedList<City> inputCities) 
+	public static Graph generateGraph(int size, double density, LinkedList<City> inputCities) 
 			throws FileNotFoundException
 	{
 		GraphGenerator gg = new GraphGenerator(size, density);

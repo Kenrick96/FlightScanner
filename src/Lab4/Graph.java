@@ -20,7 +20,7 @@ import java.util.LinkedList;
 public class Graph
 {
 	private LinkedList<City> cities;
-	private int size;
+	private int size; // number of cities in graph
 	private int numOfEdges;
 
 	public Graph()

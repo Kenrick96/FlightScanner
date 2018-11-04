@@ -41,7 +41,10 @@ public class GraphGenerator
 		int cityCount = 0;
 		while (cityCount < size && cityCount < inputCities.size())
 		{
+			System.out.println("Adding city " + (cityCount + 1));
 			graph.addCity(inputCities.get(cityCount));
+			
+			++cityCount;
 		}
 	}
 	

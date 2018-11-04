@@ -44,14 +44,13 @@ public class FlightScheduling
 		
 		for(int graphSize = MIN_GRAPH_SIZE; graphSize <= MAX_GRAPH_SIZE; graphSize += GRAPH_SIZE_INCREMENT)
 		{
-			graphs = GraphVarying.generateGraphsVaryingDensity(graphSize, MIN_GRAPH_DENSITY, 
-					MAX_GRAPH_DENSITY, (int) Math.round(MAX_GRAPH_DENSITY/GRAPH_DENSITY_INCREMENT), inputCities);
-			
-			for(int graphIndex = 0; graphIndex <graphs.size(); ++graphIndex)
+			for(double graphDensity = MIN_GRAPH_DENSITY; 
+					graphDensity <= MAX_GRAPH_DENSITY; graphDensity += GRAPH_DENSITY_INCREMENT)
 			{
-				Graph graph = graphs.get(graphIndex);
+				System.out.println("For graph of size: " + graphSize + " , density: " + graphDensity);
+				Graph graph = GraphVarying.generateGraph(graphSize, graphDensity, inputCities);
 				
-				int graphID = graphSize - 10 + graphIndex + 1;
+				int graphID = graphSize/GRAPH_SIZE_INCREMENT;
 				
 				System.out.println("Graph " + graphID + " [number of cities: " + graphSize + 
 						", number of non-stop flights: " + graph.numOfEdges() + "]");
