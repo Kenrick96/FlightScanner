@@ -12,11 +12,13 @@ import java.util.Scanner;
  * density entered last-updated: 2018-11-04
  * 
  * @author annie
+ * @author Thomas Stephen Felix
  *
  */
 public class GraphGenerator {
 	private int size;
 	// private double density;
+	boolean[][] bool;
 	private int requiredNumOfEdges;
 	private Graph graph;
 
@@ -26,16 +28,25 @@ public class GraphGenerator {
 	 * @param size
 	 * @param density
 	 */
-	public GraphGenerator(int size, double density) {
+	public GraphGenerator(int size,LinkedList<City> inputCities) {
 		this.size = size;
-		// this.density = density;
-		requiredNumOfEdges = (int) Math.round(density * size * (size - 1) / 2);
-		// System.out.println("Required num of edges:" + requiredNumOfEdges);
+		bool = new boolean [size][size];
+		for(int i=0;i<size;i++)
+			for(int j=0;j<size;j++)
+				bool[i][j]=false;
 		graph = new Graph();
+		addCities(inputCities);
+		
+	}
+	
+	public void setGraphDensity(double density)
+	{
+		requiredNumOfEdges = (int) Math.round(density * size * (size - 1) / 2);
 	}
 
 	public void addCities(LinkedList<City> inputCities) {
 		int cityCount = 0;
+		graph.clear();
 		while (cityCount < size && cityCount < inputCities.size()) {
 //			System.out.println("Adding city " + (cityCount + 1));
 			graph.addCity(inputCities.get(cityCount));
@@ -93,10 +104,6 @@ public class GraphGenerator {
 
 	public void buildEdges() {
 		Random r = new Random();
-		boolean[][] bool = new boolean [size][size];
-		for(int i=0;i<size;i++)
-			for(int j=0;j<size;j++)
-				bool[i][j]=false;
 		while (graph.numOfEdges() < requiredNumOfEdges) {
 			int x = r.nextInt(size);
 			int y = r.nextInt(size);
@@ -121,9 +128,8 @@ public class GraphGenerator {
 		graph.printGraph();
 	}
 
-	public Graph generateGraph(LinkedList<City> inputCities)
+	public Graph generateGraph()
 	{
-		addCities(inputCities);
 		buildEdges();
 		
 		return graph;

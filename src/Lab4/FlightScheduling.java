@@ -26,7 +26,7 @@ public class FlightScheduling
 //	public static final String DESTINATION_CITY = "Kiliya";
 	
 	public static final int MIN_GRAPH_SIZE = 10;
-	public static final int MAX_GRAPH_SIZE = 100;
+	public static final int MAX_GRAPH_SIZE = 20;
 	public static final int GRAPH_SIZE_INCREMENT = 10;
 	
 	public static final double MIN_GRAPH_DENSITY = 0.1;
@@ -42,14 +42,15 @@ public class FlightScheduling
 		LinkedList<City> inputCities = IOHandler.readCitiesFile(CITIES_FILE_PATH, MAX_GRAPH_SIZE);
 		
 		for(int graphSize = MIN_GRAPH_SIZE; graphSize <= MAX_GRAPH_SIZE; graphSize += GRAPH_SIZE_INCREMENT)
-		{
+		{graphGenerator = new GraphGenerator(graphSize,inputCities);
 			for(double graphDensity = MIN_GRAPH_DENSITY; 
 					graphDensity <= MAX_GRAPH_DENSITY; graphDensity += GRAPH_DENSITY_INCREMENT)
 			{
 				System.out.println("For graph of size: " + graphSize + " , density: " + graphDensity);
 				
-				graphGenerator = new GraphGenerator(graphSize, graphDensity);
-				Graph graph = graphGenerator.generateGraph(inputCities);
+				graphGenerator.setGraphDensity(graphDensity);
+				Graph graph = graphGenerator.generateGraph();
+				graph.printGraph();
 				
 				String graphID = graphSize/GRAPH_SIZE_INCREMENT + "-" + (int)(graphDensity/MIN_GRAPH_DENSITY);
 				
