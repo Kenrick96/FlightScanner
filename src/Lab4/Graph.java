@@ -12,6 +12,8 @@ import java.util.LinkedList;
  * connected to City A. This is an non-weighted graph, so weights of edges are
  * not recorded; instead we simply consider whether 2 Cities are neighbours.
  * 
+ * last updated: 2018-11-04
+ * 
  * @author annie
  *
  */

@@ -1,5 +1,6 @@
 package Lab4;
 
+
 public class FlightScheduling
 {
 	public static final int MIN_GRAPH_SIZE = 10;

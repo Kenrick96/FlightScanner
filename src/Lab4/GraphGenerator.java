@@ -8,6 +8,7 @@ import java.util.Scanner;
 /**
  * This is the generator that randomly creates graphs according to size and
  * density entered
+ * last-updated: 2018-11-04
  * 
  * @author annie
  *
@@ -29,7 +30,8 @@ public class GraphGenerator
 	{
 		this.size = size;
 		// this.density = density;
-		requiredNumOfEdges = (int) Math.round(density * size * (size - 1));
+		requiredNumOfEdges = (int) Math.round(density * size * (size - 1)/2);
+		// System.out.println("Required num of edges:" + requiredNumOfEdges);
 		graph = new Graph();
 	}
 

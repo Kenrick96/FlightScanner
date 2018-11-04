@@ -6,16 +6,28 @@ import java.util.ArrayList;
 import Lab4.Graph;
 import Lab4.GraphVarying;
 
+/**
+ * Test generation of graphs of varying size and density
+ * 
+ * @author annie
+ * @subauthor Jason
+ */
 public class TestGraphVarying
 {
 	public static void main(String[] args) throws FileNotFoundException
 	{
 
-		ArrayList<Graph> graphs = GraphVarying.generateGraphsVaryingSize(0.5, 20, 100, 8, "Cities.csv");
+//		ArrayList<Graph> graphsVarySize = GraphVarying.generateGraphsVaryingSize(0.5, 20, 100, 8, "Cities.csv");
+//
+//		for (Graph g : graphsVarySize)
+//		{
+//			System.out.println("Size: " + g.size() + " NumOfEdges: " + g.numOfEdges() + '\n');
+//		}
+		
+		ArrayList<Graph> graphsVaryDensity = GraphVarying.generateGraphsVaryingDensity(20, 0.1, 1, 4, "Cities.csv");
 
-		for (Graph g : graphs)
+		for (Graph g : graphsVaryDensity)
 		{
-			// System.out.println(g);
 			System.out.println("Size: " + g.size() + " NumOfEdges: " + g.numOfEdges() + '\n');
 		}
 	}

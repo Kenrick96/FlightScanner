@@ -71,7 +71,6 @@ public class GraphVarying
 		double densityIncrement = (largestDensity - smallestDensity) / numOfGraphs;
 		double density = smallestDensity;
 		
-		
 		for (int count = 0; count < numOfGraphs; ++count)
 		{
 			graphs.add(generateGraph(size, density, srcFile));
