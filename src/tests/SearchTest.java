@@ -2,14 +2,14 @@ package tests;
 
 import java.util.LinkedList;
 
-import Lab4.CPUTime;
+import Lab4.Result;
 import Lab4.City;
 import Lab4.Graph;
 import Lab4.Searcher;
 
 /**
- * This class tests the Searcher and CPUTime classes to make sure they work correctly.
- * last-updated: 2018-11-03
+ * This class tests the Searcher and Result classes to make sure they work correctly.
+ * last-updated: 2018-11-04
  * 
  * @author Jason
  *
@@ -45,8 +45,8 @@ public class SearchTest
 		
 		LinkedList<City> testShortest = new LinkedList<City>();
 		
-		CPUTime bfsTimeTaken = new CPUTime();
-		testShortest = testSearcher.bfsShortestRoute(testCities[0], testCities[4], bfsTimeTaken);
+		Result bfsResult = new Result();
+		testShortest = testSearcher.bfsShortestRoute(testCities[0], testCities[4], bfsResult);
 		
 		if(testShortest == null)
 		{
@@ -59,11 +59,11 @@ public class SearchTest
 				System.out.print("->" + city);
 			}
 		}
-		System.out.println("\nBFS took:" + bfsTimeTaken.getCPUTimeTaken() + "ns");
+		System.out.println("\nBFS took:" + bfsResult.getSearchTime() + "ns");
 		System.out.println();
 		
-		CPUTime dfsTimeTaken = new CPUTime();
-		testShortest = testSearcher.dfsShortestRoute(testCities[0], testCities[4], dfsTimeTaken);
+		Result dfsResult = new Result();
+		testShortest = testSearcher.dfsShortestRoute(testCities[0], testCities[4], dfsResult);
 		
 		if(testShortest == null)
 		{
@@ -76,7 +76,7 @@ public class SearchTest
 				System.out.print("->" + city);
 			}
 		}
-		System.out.println("\nDFS took:" + dfsTimeTaken.getCPUTimeTaken() + "ns");
+		System.out.println("\nDFS took:" + dfsResult.getSearchTime() + "ns");
 	}
 
 }

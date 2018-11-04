@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 /**
  * This class searches for the shortest path between a source and a destination city.
- * last-updated: 2018-11-03
+ * last-updated: 2018-11-04
  * 
  * @author Jason
  *
@@ -59,7 +59,7 @@ public class Searcher
 	 * @param destination
 	 * @return shortestRoute between source and destination
 	 */
-	public LinkedList<City> bfsShortestRoute(City source, City destination, CPUTime cpuTimeTaken)
+	public LinkedList<City> bfsShortestRoute(City source, City destination, Result result)
 	{
 		long startTime = System.nanoTime();
 		
@@ -81,7 +81,7 @@ public class Searcher
 					if(neighbour.equals(destination))
 					{
 						long endTime = System.nanoTime();
-						cpuTimeTaken.setCPUTimeTaken(endTime - startTime);
+						result.setSearchTime(endTime - startTime);
 						
 						return constructRoute(source, destination);
 					}
@@ -93,7 +93,7 @@ public class Searcher
 		}
 		
 		long endTime = System.nanoTime();
-		cpuTimeTaken.setCPUTimeTaken(endTime - startTime);
+		result.setSearchTime(endTime - startTime);
 		return null; // no path found
 	}
 	
@@ -112,7 +112,7 @@ public class Searcher
 	 * @param destination
 	 * @return shortestRoute between source and destination
 	 */
-	public LinkedList<City> dfsShortestRoute(City source, City destination, CPUTime cpuTimeTaken)
+	public LinkedList<City> dfsShortestRoute(City source, City destination, Result result)
 	{
 		long startTime = System.nanoTime();
 		LinkedList<City> shortestRoute = null;
@@ -159,7 +159,7 @@ public class Searcher
 		}
 		
 		long endTime = System.nanoTime();
-		cpuTimeTaken.setCPUTimeTaken(endTime - startTime);
+		result.setSearchTime(endTime - startTime);
 		return shortestRoute; // if no path found, null will be returned just like in bfs
 	}
 }

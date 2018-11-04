@@ -29,7 +29,7 @@ public class GraphVarying
 	 *            source file of cities
 	 * @throws FileNotFoundException
 	 */
-	public static ArrayList<Graph> generateGraphsVaryingDensity(double density, int smallestSize, 
+	public static ArrayList<Graph> generateGraphsVaryingSize(double density, int smallestSize, 
 			int largestSize, int numOfGraphs, String srcFile) throws FileNotFoundException
 	{
 		ArrayList<Graph> graphs = new ArrayList<Graph>();
@@ -63,7 +63,7 @@ public class GraphVarying
 	 *            source file of cities
 	 * @throws FileNotFoundException
 	 */
-	public static ArrayList<Graph> generateGraphsVaryingSize(int size, double smallestDensity, 
+	public static ArrayList<Graph> generateGraphsVaryingDensity(int size, double smallestDensity, 
 			double largestDensity, int numOfGraphs, String srcFile) throws FileNotFoundException
 	{
 		ArrayList<Graph> graphs = new ArrayList<Graph>();
