@@ -21,7 +21,7 @@ public class FlightScheduling
 	public static final String SOURCE_CITY = "Tokyo";
 	public static final String DESTINATION_CITY = "Shanghai";
 	
-	public static final int MIN_GRAPH_SIZE = 20;
+	public static final int MIN_GRAPH_SIZE = 10;
 	public static final int MAX_GRAPH_SIZE = 100;
 	public static final int GRAPH_SIZE_INCREMENT = 10;
 	
@@ -44,7 +44,7 @@ public class FlightScheduling
 			{
 				Graph graph = graphs.get(graphIndex);
 				
-				System.out.println("Graph " + (graphIndex + 1) + " [number of cities: " + graph.size() + 
+				System.out.println("Graph " + (graphSize - 10 + graphIndex + 1) + " [number of cities: " + graphSize + 
 						", number of non-stop flights: " + graph.numOfEdges() + "]");
 				Result newResult = new Result(graph.size(),graph.density());
 				
