@@ -128,21 +128,6 @@ public class Graph
 		cities.clear();
 	}
 
-	/**
-	 * Annie, this method is the same as toString()
-	 * 
-	 * @return
-	 */
-	public String adjacencyList()
-	{
-		String text = "";
-		for (City c : cities)
-		{
-			text = text + c.printNeighbors() + '\n';
-		}
-		return text;
-	}
-
 	@Override
 	public String toString()
 	{
