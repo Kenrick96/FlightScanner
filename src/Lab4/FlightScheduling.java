@@ -69,8 +69,9 @@ public class FlightScheduling
 			for(double graphDensity = MIN_GRAPH_DENSITY; 
 					graphDensity <= MAX_GRAPH_DENSITY; graphDensity += GRAPH_DENSITY_INCREMENT)
 			{
-				System.out.println("For graph of size: " + graphSize + " , density: " + graphDensity);
-				
+				System.out.println("For graph of size: " + graphSize + 
+						" , density: " + String.format("%.1f", graphDensity) + 
+						"\n----------------------------------------------------------------------");
 				// start of graph generation
 				graphGenerator.setGraphDensity(graphDensity);
 				Graph graph = graphGenerator.generateGraph();
@@ -83,61 +84,54 @@ public class FlightScheduling
 				// end of graph generation
 				
 				// start of BFS
+				System.out.println("\nUsing BFS:");
 				Result newResultBFS = new Result(graph.size(),graph.numOfNonStopFlights());
 				
 				LinkedList<City> shortestRouteBFS = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
 														graph.getCity(0), newResultBFS);
-				
-				if(shortestRouteBFS == null)
-				{
-					System.out.println("no path found using BFS");
-				}
-				else
-				{
-					newResultBFS.foundPath();
-					
-					for(City city: shortestRouteBFS)
-					{
-						System.out.print("->" + city);
-						
-					}
-				}
-				System.out.println("\nSearch time using BFS: " + newResultBFS.getSearchTime() + "ns\n");
+				checkAndPrintPath(shortestRouteBFS,newResultBFS);
 				
 				resultsBFS.add(newResultBFS);
 				graph.resetCitiesVisited();
 				// end of BFS
 				
 				// start of DFS
+				System.out.println("Using DFS:");
 				Result newResultDFS = new Result(graph.size(),graph.numOfNonStopFlights());
 				
 				LinkedList<City> shortestRouteDFS = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
 														graph.getCity(0), newResultDFS);
-				
-				if(shortestRouteDFS == null)
-				{
-					System.out.println("no path found using DFS");
-				}
-				else
-				{
-					newResultDFS.foundPath();
-					
-					for(City city: shortestRouteDFS)
-					{
-						System.out.print("->" + city);
-						
-					}
-				}
-				System.out.println("\nSearch time using DFS: " + newResultDFS.getSearchTime() + "ns\n");
+				checkAndPrintPath(shortestRouteDFS,newResultDFS);
 				
 				resultsDFS.add(newResultDFS);
 				graph.resetCitiesVisited();
 				// end of DFS
+				
+				System.out.println("----------------------------------------------------------------------\n");
 			}
 		}
 		
 		outputResult(resultsBFS, "BFS Results.xlsx");
 		outputResult(resultsDFS, "DFS Results.xlsx");
+	}
+	
+	public static void checkAndPrintPath(LinkedList<City> shortestRoute, Result newResult)
+	{
+		if(shortestRoute == null)
+		{
+			System.out.println("no path found");
+		}
+		else
+		{
+			newResult.foundPath();
+			
+			for(City city: shortestRoute)
+			{
+				System.out.print("->" + city);
+				
+			}
+		}
+		System.out.println("\nSearch time: " + newResult.getSearchTime() + "ns\n");
 	}
 	
 	/**
@@ -210,5 +204,6 @@ public class FlightScheduling
 			e.getMessage();
 		}
 
+		System.out.println("Result written to file successfully");
 	}
 }
