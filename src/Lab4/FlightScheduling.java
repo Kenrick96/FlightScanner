@@ -77,6 +77,7 @@ public class FlightScheduling
 				System.out.println("\nSearch time: " + newResult.getSearchTime() + "ns\n");
 				
 				results.add(newResult);
+				graph.clear();
 			}
 		}
 	}
