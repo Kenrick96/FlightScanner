@@ -61,6 +61,7 @@ public class Searcher
 	 */
 	public LinkedList<City> bfsShortestRoute(City source, City destination, Result result)
 	{
+		System.out.println("Searching...");
 		long startTime = System.nanoTime();
 		
 		// start from the source
@@ -114,6 +115,7 @@ public class Searcher
 	 */
 	public LinkedList<City> dfsShortestRoute(City source, City destination, Result result)
 	{
+		System.out.println("Searching...");
 		long startTime = System.nanoTime();
 		LinkedList<City> shortestRoute = null;
 		

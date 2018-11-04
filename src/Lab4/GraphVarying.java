@@ -2,6 +2,7 @@ package Lab4;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * This static class is used to generate a series of Graphs as per specification.
@@ -30,7 +31,7 @@ public class GraphVarying
 	 * @throws FileNotFoundException
 	 */
 	public static ArrayList<Graph> generateGraphsVaryingSize(double density, int smallestSize, 
-			int largestSize, int numOfGraphs, String srcFile) throws FileNotFoundException
+			int largestSize, int numOfGraphs, LinkedList<City> inputCities) throws FileNotFoundException
 	{
 		ArrayList<Graph> graphs = new ArrayList<Graph>();
 		
@@ -40,7 +41,7 @@ public class GraphVarying
 		
 		for (int count = 0; count < numOfGraphs; ++count)
 		{
-			graphs.add(generateGraph(size, density, srcFile));
+			graphs.add(generateGraph(size, density, inputCities));
 			size += sizeIncrement;
 		}
 		
@@ -64,7 +65,7 @@ public class GraphVarying
 	 * @throws FileNotFoundException
 	 */
 	public static ArrayList<Graph> generateGraphsVaryingDensity(int size, double smallestDensity, 
-			double largestDensity, int numOfGraphs, String srcFile) throws FileNotFoundException
+			double largestDensity, int numOfGraphs, LinkedList<City> inputCities) throws FileNotFoundException
 	{
 		ArrayList<Graph> graphs = new ArrayList<Graph>();
 		
@@ -73,7 +74,7 @@ public class GraphVarying
 		
 		for (int count = 0; count < numOfGraphs; ++count)
 		{
-			graphs.add(generateGraph(size, density, srcFile));
+			graphs.add(generateGraph(size, density, inputCities));
 			density += densityIncrement;
 		}
 		
@@ -87,11 +88,12 @@ public class GraphVarying
 	 * @param density
 	 * @throws FileNotFoundException
 	 */
-	private static Graph generateGraph(int size, double density, String file) throws FileNotFoundException
+	private static Graph generateGraph(int size, double density, LinkedList<City> inputCities) 
+			throws FileNotFoundException
 	{
 		GraphGenerator gg = new GraphGenerator(size, density);
 		
-		gg.readCities(file);
+		gg.addCities(inputCities);
 		gg.buildEdges();
 		return gg.getGraph();
 	}

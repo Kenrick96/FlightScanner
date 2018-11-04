@@ -24,12 +24,12 @@ public class TestGraphVarying
 //			System.out.println("Size: " + g.size() + " NumOfEdges: " + g.numOfEdges() + '\n');
 //		}
 		
-		ArrayList<Graph> graphsVaryDensity = GraphVarying.generateGraphsVaryingDensity(20, 0.1, 1, 4, "Cities.csv");
-
-		for (Graph g : graphsVaryDensity)
-		{
-			System.out.println("Size: " + g.size() + " NumOfEdges: " + g.numOfEdges() + '\n');
-		}
+//		ArrayList<Graph> graphsVaryDensity = GraphVarying.generateGraphsVaryingDensity(20, 0.1, 1, 4, "Cities.csv");
+//
+//		for (Graph g : graphsVaryDensity)
+//		{
+//			System.out.println("Size: " + g.size() + " NumOfEdges: " + g.numOfEdges() + '\n');
+//		}
 	}
 
 }

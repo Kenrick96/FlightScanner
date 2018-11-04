@@ -2,6 +2,7 @@ package Lab4;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -35,6 +36,15 @@ public class GraphGenerator
 		graph = new Graph();
 	}
 
+	public void addCities(LinkedList<City> inputCities)
+	{
+		int cityCount = 0;
+		while (cityCount < size && cityCount < inputCities.size())
+		{
+			graph.addCity(inputCities.get(cityCount));
+		}
+	}
+	
 	/**
 	 * Add cities to graph from a external file, this functions reads line by line
 	 * until reaching the graph size
@@ -44,29 +54,38 @@ public class GraphGenerator
 	 */
 	public void readCities(String fileName) throws FileNotFoundException
 	{
-		File f = new File(fileName);
-		Scanner s = new Scanner(f);
-		int count = 0;
-		while (count < size)
+		File file = new File(fileName);
+		Scanner fileScanner = new Scanner(file);
+		
+		int cityCount = 0;
+		while (cityCount < size)
 		{
-			if (s.hasNextLine())
+			if (fileScanner.hasNextLine())
 			{
-				String line = s.nextLine();
-				Scanner lineScan = new Scanner(line);
+				String line = fileScanner.nextLine();
+				
+				Scanner lineScanner = new Scanner(line);
+				
 				int cityID;
 				String cityName;
-				if (lineScan.hasNextInt())
+				
+				if (lineScanner.hasNextInt())
 				{
-					cityID = lineScan.nextInt();
-					if (lineScan.hasNext())
+					cityID = lineScanner.nextInt();
+					
+					if (lineScanner.hasNext())
 					{
-						cityName = lineScan.next();
-						if (lineScan.hasNext())
-							cityName = cityName + " " + lineScan.next();
+						cityName = lineScanner.next();
+						
+						if (lineScanner.hasNext())
+							cityName = cityName + " " + lineScanner.next();
+						
 						City newCity = new City(cityID, cityName);
 						if (newCity != null)
+						{
 							graph.addCity(newCity);
-						count++;
+							++cityCount;
+						}
 					}
 				}
 			}
