@@ -75,7 +75,7 @@ public class FlightScheduling
 				
 				if(shortestRouteBFS == null)
 				{
-					System.out.println("no path found");
+					System.out.println("no path found using BFS");
 				}
 				else
 				{
@@ -87,7 +87,7 @@ public class FlightScheduling
 						
 					}
 				}
-				System.out.println("\nSearch time: " + newResultBFS.getSearchTime() + "ns\n");
+				System.out.println("\nSearch time using BFS: " + newResultBFS.getSearchTime() + "ns\n");
 				
 				resultsBFS.add(newResultBFS);
 				graph.resetCitiesVisited();
@@ -101,7 +101,7 @@ public class FlightScheduling
 				
 				if(shortestRouteDFS == null)
 				{
-					System.out.println("no path found");
+					System.out.println("no path found using DFS");
 				}
 				else
 				{
@@ -113,7 +113,7 @@ public class FlightScheduling
 						
 					}
 				}
-				System.out.println("\nSearch time: " + newResultDFS.getSearchTime() + "ns\n");
+				System.out.println("\nSearch time using DFS: " + newResultDFS.getSearchTime() + "ns\n");
 				
 				resultsDFS.add(newResultDFS);
 				graph.resetCitiesVisited();
@@ -121,6 +121,6 @@ public class FlightScheduling
 			}
 		}
 		
-		// to-do: output result in excel
+		
 	}
 }
