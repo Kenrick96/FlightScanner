@@ -49,10 +49,7 @@ public class City
 	 */
 	public boolean isNeighbor(City theCity)
 	{
-		if (neighbors.contains(theCity))
-			return true;
-		else
-			return false;
+		return neighbors.contains(theCity);
 	}
 
 	public LinkedList<City> getNeighbors()
