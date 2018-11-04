@@ -45,15 +45,19 @@ public class GraphGenerator
 		File f = new File(fileName);
 		Scanner s = new Scanner(f);
 		int count = 0;
-		while (count < size) {
-			if (s.hasNextLine()) {
-				String line =s.nextLine();
+		while (count < size)
+		{
+			if (s.hasNextLine())
+			{
+				String line = s.nextLine();
 				Scanner lineScan = new Scanner(line);
 				int cityID;
 				String cityName;
-				if (lineScan.hasNextInt()) {
+				if (lineScan.hasNextInt())
+				{
 					cityID = lineScan.nextInt();
-					if (lineScan.hasNext()) {
+					if (lineScan.hasNext())
+					{
 						cityName = lineScan.next();
 						if (lineScan.hasNext())
 							cityName = cityName + " " + lineScan.next();

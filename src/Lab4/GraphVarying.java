@@ -4,20 +4,18 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
- * This class is used to generate a series of Graphs as per specification
+ * This static class is used to generate a series of Graphs as per specification.
+ * last-updated: 2018-11-04
  * 
  * @author annie
+ * @subauthor Jason (refactor)
  *
  */
 public class GraphVarying
 {
-
-	private ArrayList<Graph> graphs;
-	private String file;
-
 	/**
-	 * Constructor that takes a constant number of density and will then generate
-	 * different sizes of graphs with this density specified
+	 * Static method that takes a constant number of density and generate
+	 * different sizes of graphs of this specified density 
 	 * 
 	 * @param density
 	 *            the constant density desired
@@ -25,31 +23,33 @@ public class GraphVarying
 	 *            lower bound of graph size
 	 * @param largestSize
 	 *            upper bound of graph size
-	 * @param totalNum
+	 * @param numOfGraphs
 	 *            total number of graphs to generate
 	 * @param srcFile
 	 *            source file of cities
 	 * @throws FileNotFoundException
 	 */
-	public GraphVarying(double density, int smallestSize, int largestSize, int totalNum, String srcFile)
-			throws FileNotFoundException
+	public static ArrayList<Graph> generateGraphsVaryingDensity(double density, int smallestSize, 
+			int largestSize, int numOfGraphs, String srcFile) throws FileNotFoundException
 	{
-		graphs = new ArrayList<Graph>();
-		file = srcFile;
-		int space = (largestSize - smallestSize) / totalNum;
+		ArrayList<Graph> graphs = new ArrayList<Graph>();
+		
+		int sizeIncrement = (largestSize - smallestSize) / numOfGraphs;
+		
 		int size = smallestSize;
-		int count = 0;
-		while (count < totalNum)
+		
+		for (int count = 0; count < numOfGraphs; ++count)
 		{
-			generate(size, density);
-			density += space;
-			count++;
+			graphs.add(generateGraph(size, density, srcFile));
+			size += sizeIncrement;
 		}
+		
+		return graphs;
 	}
 
 	/**
-	 * Constructor that takes constant size of graph and generates specified number
-	 * of graph from smallestDensity to LargestDensity
+	 * Static method that takes constant size of graph and generates specified number
+	 * of graphs from smallestDensity to LargestDensity
 	 * 
 	 * @param size
 	 *            constant size of graphs
@@ -57,44 +57,43 @@ public class GraphVarying
 	 *            lower bound of density
 	 * @param largestDensity
 	 *            upper bound of density
-	 * @param totalNum
+	 * @param numOfGraphs
 	 *            total number of graphs to be generated
 	 * @param srcFile
 	 *            source file of cities
 	 * @throws FileNotFoundException
 	 */
-	public GraphVarying(int size, double smallestDensity, double largestDensity, int totalNum, String srcFile)
-			throws FileNotFoundException
+	public static ArrayList<Graph> generateGraphsVaryingSize(int size, double smallestDensity, 
+			double largestDensity, int numOfGraphs, String srcFile) throws FileNotFoundException
 	{
-		graphs = new ArrayList<Graph>();
-		file = srcFile;
-		double space = (largestDensity - smallestDensity) / totalNum;
+		ArrayList<Graph> graphs = new ArrayList<Graph>();
+		
+		double densityIncrement = (largestDensity - smallestDensity) / numOfGraphs;
 		double density = smallestDensity;
-		int count = 0;
-		while (count < totalNum)
+		
+		
+		for (int count = 0; count < numOfGraphs; ++count)
 		{
-			generate(size, density);
-			density += space;
-			count++;
+			graphs.add(generateGraph(size, density, srcFile));
+			density += densityIncrement;
 		}
+		
+		return graphs;
 	}
 
 	/**
-	 * Method that generates a graph specified and
+	 * Method that generates a graph specified and add it to list of graphs
 	 * 
 	 * @param size
 	 * @param density
 	 * @throws FileNotFoundException
 	 */
-	private void generate(int size, double density) throws FileNotFoundException
+	private static Graph generateGraph(int size, double density, String file) throws FileNotFoundException
 	{
 		GraphGenerator gg = new GraphGenerator(size, density);
+		
 		gg.readCities(file);
-		graphs.add(gg.getGraph());
+		return gg.getGraph();
 	}
 
-	public ArrayList<Graph> getGraphList()
-	{
-		return graphs;
-	}
 }
