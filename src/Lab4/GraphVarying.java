@@ -4,12 +4,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
- * This class is used to generate a series of Graphs as specification
+ * This class is used to generate a series of Graphs as per specification
  * 
  * @author annie
  *
  */
-public class GraphVarying {
+public class GraphVarying
+{
 
 	private ArrayList<Graph> graphs;
 	private String file;
@@ -31,13 +32,15 @@ public class GraphVarying {
 	 * @throws FileNotFoundException
 	 */
 	public GraphVarying(double density, int smallestSize, int largestSize, int totalNum, String srcFile)
-			throws FileNotFoundException {
+			throws FileNotFoundException
+	{
 		graphs = new ArrayList<Graph>();
 		file = srcFile;
 		int space = (largestSize - smallestSize) / totalNum;
 		int size = smallestSize;
 		int count = 0;
-		while (count < totalNum) {
+		while (count < totalNum)
+		{
 			generate(size, density);
 			density += space;
 			count++;
@@ -61,13 +64,15 @@ public class GraphVarying {
 	 * @throws FileNotFoundException
 	 */
 	public GraphVarying(int size, double smallestDensity, double largestDensity, int totalNum, String srcFile)
-			throws FileNotFoundException {
+			throws FileNotFoundException
+	{
 		graphs = new ArrayList<Graph>();
 		file = srcFile;
 		double space = (largestDensity - smallestDensity) / totalNum;
 		double density = smallestDensity;
 		int count = 0;
-		while (count < totalNum) {
+		while (count < totalNum)
+		{
 			generate(size, density);
 			density += space;
 			count++;
@@ -81,13 +86,15 @@ public class GraphVarying {
 	 * @param density
 	 * @throws FileNotFoundException
 	 */
-	private void generate(int size, double density) throws FileNotFoundException {
+	private void generate(int size, double density) throws FileNotFoundException
+	{
 		GraphGenerator gg = new GraphGenerator(size, density);
 		gg.readCities(file);
 		graphs.add(gg.getGraph());
 	}
 
-	public ArrayList<Graph> getGraphList() {
+	public ArrayList<Graph> getGraphList()
+	{
 		return graphs;
 	}
 }

@@ -4,7 +4,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * This is the class that defines the functions of a graph
+ * This is the class that defines the functions of a graph. The implementation
+ * of the graph is as adjacency list, where a LinkedList of City is maintained,
+ * and each City maintains its own LinkedList of neighbours (connected
+ * vertices).
+ * 
+ * This is an undirected graph, so when City A is connected to City B, City B is
+ * connected to City A. This is an non-weighted graph, so weights of edges are
+ * not recorded; instead we simply consider whether 2 Cities are neighbours.
  * 
  * @author annie
  *
@@ -34,8 +41,11 @@ public class Graph
 	}
 
 	/**
-	 * Method to add numOfEdges within 2 cities, checks whether there is existing numOfEdges
-	 * between 2 cities before connecting
+	 * Method to add numOfEdges within 2 cities, checks whether there is existing
+	 * numOfEdges between 2 cities before connecting.
+	 * 
+	 * Undirected graph, so when we connect firstCity to secondCity, we also connect
+	 * secondCity to firstCity.
 	 * 
 	 * @param firstCity
 	 * @param secondCity
@@ -53,7 +63,7 @@ public class Graph
 	/**
 	 * Setting all cities within the graph to unvisited
 	 */
-	public void resetCity()
+	public void resetCitiesVisited()
 	{
 		for (City c : cities)
 		{
@@ -71,7 +81,8 @@ public class Graph
 		return numOfEdges;
 	}
 
-	public double density() {
+	public double density()
+	{
 		return (double) 2 * numOfEdges / (size * (size - 1));
 	}
 
@@ -115,7 +126,13 @@ public class Graph
 		cities.clear();
 	}
 
-	public String adjacencyList() {
+	/**
+	 * Annie, this method is the same as toString()
+	 * 
+	 * @return
+	 */
+	public String adjacencyList()
+	{
 		String text = "";
 		for (City c : cities)
 		{

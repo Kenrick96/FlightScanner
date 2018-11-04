@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * This class represents each vertex in the graph. cityID is used to identify a City.
  * last-updated: 2018-11-03
  * 
- * @author Annie, Jason
+ * @author annie, Jason
  *
  */
 public class City
@@ -19,7 +19,6 @@ public class City
 	
 	private LinkedList<City> neighbors;
 
-	// constructor does not check if parameters overflow currently
 	public City(int cityID, String cityName)
 	{
 		this.cityID = cityID;
@@ -63,7 +62,7 @@ public class City
 
 	public String printNeighbors()
 	{
-		String list = this.cityName + ": [";
+		String list = this.cityName + "'s neighbours: [";
 		for (City c : neighbors)
 		{
 			list = list + c.getCityName() + ',';
