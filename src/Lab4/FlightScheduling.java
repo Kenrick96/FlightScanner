@@ -23,8 +23,8 @@ public class FlightScheduling
 	public static final String CITIES_FILE_PATH =  "C:\\Users\\jason\\Documents\\NTU\\Academic\\1 SCSE\\"
 			+ "Year_2_Semester_1\\CZ2001 Algorithms\\3 Labs\\Lab 4\\FlightScanner\\src\\Lab4\\World Cities.csv";
 	
-	public static final String SOURCE_CITY = "Kirovohrad";
-	public static final String DESTINATION_CITY = "Kiliya";
+//	public static final String SOURCE_CITY = "Kirovohrad";
+//	public static final String DESTINATION_CITY = "Kiliya";
 	
 	public static final int MIN_GRAPH_SIZE = 100;
 	public static final int MAX_GRAPH_SIZE = 1000;
@@ -37,7 +37,6 @@ public class FlightScheduling
 	public static void main(String args[]) throws Exception // #YOLO
 	{
 		Searcher searcher = new Searcher();
-		ArrayList<Graph> graphs;
 		ArrayList<Result> results = new ArrayList<Result>();
 		
 		LinkedList<City> inputCities = IOHandler.readCitiesFile(CITIES_FILE_PATH, MAX_GRAPH_SIZE);
@@ -48,6 +47,7 @@ public class FlightScheduling
 					graphDensity <= MAX_GRAPH_DENSITY; graphDensity += GRAPH_DENSITY_INCREMENT)
 			{
 				System.out.println("For graph of size: " + graphSize + " , density: " + graphDensity);
+				
 				Graph graph = GraphVarying.generateGraph(graphSize, graphDensity, inputCities);
 				
 				int graphID = graphSize/GRAPH_SIZE_INCREMENT;
@@ -57,8 +57,8 @@ public class FlightScheduling
 				
 				Result newResult = new Result(graph.size(),graph.density());
 				
-				LinkedList<City> shortestRoute = searcher.bfsShortestRoute(graph.getCity(SOURCE_CITY), 
-														graph.getCity(DESTINATION_CITY), newResult);
+				LinkedList<City> shortestRoute = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
+														graph.getCity(0), newResult);
 				
 				if(shortestRoute == null)
 				{
