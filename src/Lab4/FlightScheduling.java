@@ -30,9 +30,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class FlightScheduling
 {
 	// Jason's file path: C:\Users\jason\Documents\NTU\Academic\1 SCSE\Year_2_Semester_1\CZ2001 Algorithms\3 Labs\Lab 4\FlightScanner\src\Lab4\World Cities.csv
-	// Stephen's file path: C:\\Users\\steph\\Documents\\New folder\\FlightScanner\\src\\Lab4\\World Cities.csv
+	// Stephen's file path: C:\Users\steph\Documents\New folder\FlightScanner\src\Lab4\World Cities.csv
 	
-	public static final String CITIES_FILE_PATH =  "C:\\Users\\jason\\Documents\\NTU\\Academic\\1 SCSE\\Year_2_Semester_1\\CZ2001 Algorithms\\3 Labs\\Lab 4\\FlightScanner\\src\\Lab4\\World Cities.csv";
+	public static final String CITIES_FILE_PATH =  "C:\\Users\\steph\\Documents\\New folder\\FlightScanner\\src\\Lab4\\World Cities.csv";
 	
 //	public static final String SOURCE_CITY = "Kirovohrad";
 //	public static final String DESTINATION_CITY = "Kiliya";
@@ -45,6 +45,7 @@ public class FlightScheduling
 	public static final double MAX_GRAPH_DENSITY = 1;
 	public static final double GRAPH_DENSITY_INCREMENT = 0.1;
 	
+	public static final int NUM_OF_ITERATIONS = 50;
 	/**
 	 * main method that applies searching algorithm to flight-scheduling
 	 * 
@@ -85,26 +86,34 @@ public class FlightScheduling
 				
 				// start of BFS
 				System.out.println("\nUsing BFS:");
-				Result newResultBFS = new Result(graph.size(),graph.numOfNonStopFlights());
-				
+				Result[] newResultBFS = new Result[NUM_OF_ITERATIONS];
+				for(int i=0;i<NUM_OF_ITERATIONS;i++) {
+				newResultBFS[i] = new Result(graph.size(),graph.numOfNonStopFlights());
 				LinkedList<City> shortestRouteBFS = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
-														graph.getCity(0), newResultBFS);
-				checkAndPrintPath(shortestRouteBFS,newResultBFS);
+														graph.getCity(0), newResultBFS[i]);
+//				checkAndPrintPath(shortestRouteBFS,newResultBFS[i]);
+				graph.resetCitiesVisited();}
+				sort(newResultBFS,NUM_OF_ITERATIONS);
+				Result F1Result = new Result(graph.size(),graph.numOfNonStopFlights());
+				F1Result.setSearchTime(retInterquartile(newResultBFS,NUM_OF_ITERATIONS));
+				resultsBFS.add(F1Result);
 				
-				resultsBFS.add(newResultBFS);
-				graph.resetCitiesVisited();
 				// end of BFS
 				
 				// start of DFS
 				System.out.println("Using DFS:");
-				Result newResultDFS = new Result(graph.size(),graph.numOfNonStopFlights());
+				Result[] newResultDFS = new Result[NUM_OF_ITERATIONS];
+				for(int i=0;i<NUM_OF_ITERATIONS;i++) {
+				newResultDFS[i] = new Result(graph.size(),graph.numOfNonStopFlights());
+				LinkedList<City> shortestRouteDFS = searcher.dfsShortestRoute(graph.getCity(graphSize-1), 
+														graph.getCity(0), newResultDFS[i]);
+//				checkAndPrintPath(shortestRouteDFS,newResultDFS[i]);
+				graph.resetCitiesVisited();}
+				sort(newResultDFS,NUM_OF_ITERATIONS);
+				Result F2Result = new Result(graph.size(),graph.numOfNonStopFlights());
+				F2Result.setSearchTime(retInterquartile(newResultDFS,NUM_OF_ITERATIONS));
+				resultsDFS.add(F2Result);
 				
-				LinkedList<City> shortestRouteDFS = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
-														graph.getCity(0), newResultDFS);
-				checkAndPrintPath(shortestRouteDFS,newResultDFS);
-				
-				resultsDFS.add(newResultDFS);
-				graph.resetCitiesVisited();
 				// end of DFS
 				
 				System.out.println("----------------------------------------------------------------------\n");
@@ -205,5 +214,22 @@ public class FlightScheduling
 		}
 
 		System.out.println("Result written to file successfully");
+	}
+	public static void sort(Result[] results,int noOfIterations)
+	{
+		for(int i=0;i<noOfIterations;i++)
+			for(int j=i+1;j<noOfIterations;j++)
+			if(results[i].getSearchTime()<results[j].getSearchTime()){
+				Result temp = results[i];
+				results[i]=results[j];
+				results[j]= temp;
+			}
+	}
+	public static long retInterquartile(Result[] results,int noOfIterations)
+	{long sum=0;
+	
+		for(int i=noOfIterations/4;i<3*noOfIterations/4;i++)
+			sum+=results[i].getSearchTime();
+		return sum/(noOfIterations/2);
 	}
 }
