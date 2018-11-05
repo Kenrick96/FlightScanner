@@ -32,7 +32,8 @@ public class FlightScheduling
 	// Jason's file path: C:\Users\jason\Documents\NTU\Academic\1 SCSE\Year_2_Semester_1\CZ2001 Algorithms\3 Labs\Lab 4\FlightScanner\src\Lab4\World Cities.csv
 	// Stephen's file path: C:\Users\steph\Documents\New folder\FlightScanner\src\Lab4\World Cities.csv
 	
-	public static final String CITIES_FILE_PATH =  "C:\\Users\\steph\\Documents\\New folder\\FlightScanner\\src\\Lab4\\World Cities.csv";
+	public static final String CITIES_FILE_PATH =  "C:\\Users\\jason\\Documents\\NTU\\Academic\\1 SCSE\\"
+			+ "Year_2_Semester_1\\CZ2001 Algorithms\\3 Labs\\Lab 4\\FlightScanner\\src\\Lab4\\World Cities.csv";
 	
 //	public static final String SOURCE_CITY = "Kirovohrad";
 //	public static final String DESTINATION_CITY = "Kiliya";
@@ -41,9 +42,9 @@ public class FlightScheduling
 	public static final int MAX_GRAPH_SIZE = 1000;
 	public static final int GRAPH_SIZE_INCREMENT = 100;
 	
-	public static final double MIN_GRAPH_DENSITY = 0.1;
+	public static final double MIN_GRAPH_DENSITY = 0.2;
 	public static final double MAX_GRAPH_DENSITY = 1;
-	public static final double GRAPH_DENSITY_INCREMENT = 0.1;
+	public static final double GRAPH_DENSITY_INCREMENT = 0.2;
 	
 	public static final int NUM_OF_ITERATIONS = 50;
 	/**
@@ -88,13 +89,13 @@ public class FlightScheduling
 				System.out.println("\nUsing BFS:");
 				Result[] newResultBFS = new Result[NUM_OF_ITERATIONS];
 				for(int i=0;i<NUM_OF_ITERATIONS;i++) {
-				newResultBFS[i] = new Result(graph.size(),graph.numOfNonStopFlights());
+				newResultBFS[i] = new Result(graph.size(),graph.density(),graph.numOfNonStopFlights());
 				LinkedList<City> shortestRouteBFS = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
 														graph.getCity(0), newResultBFS[i]);
 //				checkAndPrintPath(shortestRouteBFS,newResultBFS[i]);
 				graph.resetCitiesVisited();}
 				sort(newResultBFS,NUM_OF_ITERATIONS);
-				Result F1Result = new Result(graph.size(),graph.numOfNonStopFlights());
+				Result F1Result = new Result(graph.size(),graph.density(),graph.numOfNonStopFlights());
 				F1Result.setSearchTime(retInterquartile(newResultBFS,NUM_OF_ITERATIONS));
 				resultsBFS.add(F1Result);
 				
@@ -104,13 +105,13 @@ public class FlightScheduling
 				System.out.println("Using DFS:");
 				Result[] newResultDFS = new Result[NUM_OF_ITERATIONS];
 				for(int i=0;i<NUM_OF_ITERATIONS;i++) {
-				newResultDFS[i] = new Result(graph.size(),graph.numOfNonStopFlights());
+				newResultDFS[i] = new Result(graph.size(),graph.density(),graph.numOfNonStopFlights());
 				LinkedList<City> shortestRouteDFS = searcher.dfsShortestRoute(graph.getCity(graphSize-1), 
 														graph.getCity(0), newResultDFS[i]);
 //				checkAndPrintPath(shortestRouteDFS,newResultDFS[i]);
 				graph.resetCitiesVisited();}
 				sort(newResultDFS,NUM_OF_ITERATIONS);
-				Result F2Result = new Result(graph.size(),graph.numOfNonStopFlights());
+				Result F2Result = new Result(graph.size(),graph.density(),graph.numOfNonStopFlights());
 				F2Result.setSearchTime(retInterquartile(newResultDFS,NUM_OF_ITERATIONS));
 				resultsDFS.add(F2Result);
 				

@@ -89,6 +89,9 @@ public class Searcher {
 						neighbour.visit(); // prevent revisits
 						L.addLast(neighbour); // enqueue this City in queue to visit its neighbours later
 					}
+					
+					neighbour.visit(); // prevent revisits
+					L.addLast(neighbour); // enqueue this neighbouring City in queue to visit its neighbours later
 				}
 			}
 
@@ -147,7 +150,7 @@ public class Searcher {
 					// if this neighbouring City is already in Stack, remove it
 					if (L.contains(neighbour))
 						L.remove(neighbour);
-					L.addFirst(neighbour); // push this City onto stack to visit its neighbours later
+					L.addFirst(neighbour); // push this neighbouring City onto stack to visit its neighbours later
 				}
 			}
 		}
