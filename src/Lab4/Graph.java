@@ -136,6 +136,9 @@ public class Graph
 		return text;
 	}
 	
+	/**
+	 * This method prints out the graph as an adjacency matrix.
+	 */
 	public void printGraph()
 	{   System.out.print(String.format("%-30s", "Cities"));
 		for(int i=0;i<size;i++)

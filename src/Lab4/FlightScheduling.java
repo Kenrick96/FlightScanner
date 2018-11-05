@@ -159,16 +159,20 @@ public class FlightScheduling
 		XSSFRow headerRow = resultSheet.createRow(0);
 
 		// header for number of cities
-		XSSFCell graphSizeHeaderCell = headerRow.createCell(0);
-		graphSizeHeaderCell.setCellValue("Graph Size");
+		XSSFCell sizeHeader = headerRow.createCell(0);
+		sizeHeader.setCellValue("Graph Size");
 		
+		// header for graph density
+		XSSFCell densityHeader = headerRow.createCell(1);
+		densityHeader.setCellValue("Graph Density");
+				
 		// header for number of non-stop flights
-		XSSFCell graphNumOfNonStopFlightsHeaderCell = headerRow.createCell(1);
-		graphNumOfNonStopFlightsHeaderCell.setCellValue("Num Of Non-Stop Flights");
+		XSSFCell flightsHeader = headerRow.createCell(2);
+		flightsHeader.setCellValue("Num Of Non-Stop Flights");
 		
 		// header for running time
-		XSSFCell searchTimeHeaderCell = headerRow.createCell(2);
-		searchTimeHeaderCell.setCellValue("Search Time");
+		XSSFCell searchTimeHeader = headerRow.createCell(3);
+		searchTimeHeader.setCellValue("Search Time");
 		// end of header
 		
 		for(int i = 0; i < results.size(); ++i)
@@ -182,15 +186,19 @@ public class FlightScheduling
 			graphSizeCell.setCellValue(outputResult.getGraphSize());
 			
 			// number of non-stop flights
-			XSSFCell graphNumOfNonStopFlightsCell = newRow.createCell(1);
+			XSSFCell graphDensityCell = newRow.createCell(1);
+			graphDensityCell.setCellValue(outputResult.getDensity());
+			
+			// number of non-stop flights
+			XSSFCell graphNumOfNonStopFlightsCell = newRow.createCell(2);
 			graphNumOfNonStopFlightsCell.setCellValue(outputResult.getNumOfNonStopFlights());
 			
 			// running time
-			XSSFCell searchTimeCell = newRow.createCell(2);
+			XSSFCell searchTimeCell = newRow.createCell(3);
 			searchTimeCell.setCellValue(outputResult.getSearchTime());
 		}
 		
-		for(int i = 0; i < 3; ++i)
+		for(int i = 0; i < 4; ++i)
 		{
 			resultSheet.autoSizeColumn(i);
 		}
