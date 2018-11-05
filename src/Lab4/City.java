@@ -15,9 +15,9 @@ public class City
 	private String cityName;
 	
 	private boolean visited = false;
-	private City cityVisitedFrom;
+	private City cityVisitedFrom; // keep track of the visiting City for printing of path found later
 	
-	private LinkedList<City> neighbors;
+	private LinkedList<City> neighbors; // Linked List of Cities this City is connected to (adjacency list)
 
 	public City(int cityID, String cityName)
 	{

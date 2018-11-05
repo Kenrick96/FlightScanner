@@ -1,26 +1,12 @@
 package Lab4;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 /**
- * task: find a route between two cities with minimum number of stops,
- * for graphs of various sizes and densities
- * 
- * 1. Measure CPU times
- * 
- * to-do: analyse CPU times w.r.t. numOfCities (vertices) and nonStopFlights (edges)
- * 
- * incomplete implementation: source = Tokyo, destination = Shanghai for now
+ * Find a route between two cities with minimum number of stops,
+ * for graphs of various sizes and densities using BFS and DFS,
+ * and output search time.
  * 
  * last updated: 2018-11-04
  * 
@@ -32,8 +18,7 @@ public class FlightScheduling
 	// Jason's file path: C:\Users\jason\Documents\NTU\Academic\1 SCSE\Year_2_Semester_1\CZ2001 Algorithms\3 Labs\Lab 4\FlightScanner\src\Lab4\World Cities.csv
 	// Stephen's file path: C:\Users\steph\Documents\New folder\FlightScanner\src\Lab4\World Cities.csv
 	
-	public static final String CITIES_FILE_PATH =  "C:\\Users\\jason\\Documents\\NTU\\Academic\\1 SCSE\\"
-			+ "Year_2_Semester_1\\CZ2001 Algorithms\\3 Labs\\Lab 4\\FlightScanner\\src\\Lab4\\World Cities.csv";
+	public static final String CITIES_FILE_PATH =  ""; // insert your file path for World Cities.csv here
 	
 //	public static final String SOURCE_CITY = "Kirovohrad";
 //	public static final String DESTINATION_CITY = "Kiliya";
@@ -90,7 +75,7 @@ public class FlightScheduling
 				Result[] newResultBFS = new Result[NUM_OF_ITERATIONS];
 				for(int i=0;i<NUM_OF_ITERATIONS;i++) {
 				newResultBFS[i] = new Result(graph.size(),graph.density(),graph.numOfNonStopFlights());
-				LinkedList<City> shortestRouteBFS = searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
+				/*LinkedList<City> shortestRouteBFS = */searcher.bfsShortestRoute(graph.getCity(graphSize-1), 
 														graph.getCity(0), newResultBFS[i]);
 //				checkAndPrintPath(shortestRouteBFS,newResultBFS[i]);
 				graph.resetCitiesVisited();}
@@ -106,7 +91,7 @@ public class FlightScheduling
 				Result[] newResultDFS = new Result[NUM_OF_ITERATIONS];
 				for(int i=0;i<NUM_OF_ITERATIONS;i++) {
 				newResultDFS[i] = new Result(graph.size(),graph.density(),graph.numOfNonStopFlights());
-				LinkedList<City> shortestRouteDFS = searcher.dfsShortestRoute(graph.getCity(graphSize-1), 
+				/*LinkedList<City> shortestRouteDFS = */searcher.dfsShortestRoute(graph.getCity(graphSize-1), 
 														graph.getCity(0), newResultDFS[i]);
 //				checkAndPrintPath(shortestRouteDFS,newResultDFS[i]);
 				graph.resetCitiesVisited();}
@@ -121,10 +106,16 @@ public class FlightScheduling
 			}
 		}
 		
-		outputResult(resultsBFS, "BFS Results.xlsx");
-		outputResult(resultsDFS, "DFS Results.xlsx");
+		IOHandler.outputResult(resultsBFS, "BFS Results.xlsx");
+		IOHandler.outputResult(resultsDFS, "DFS Results.xlsx");
 	}
 	
+	/**
+	 * This method checks if there is a shortest route, and prints it if it exists.
+	 * 
+	 * @param shortestRoute
+	 * @param newResult
+	 */
 	public static void checkAndPrintPath(LinkedList<City> shortestRoute, Result newResult)
 	{
 		if(shortestRoute == null)
@@ -144,86 +135,6 @@ public class FlightScheduling
 		System.out.println("\nSearch time: " + newResult.getSearchTime() + "ns\n");
 	}
 	
-	/**
-	 * This method output results to an Excel file.
-	 * 
-	 * @param results
-	 * @param fileName
-	 */
-	public static void outputResult(ArrayList<Result> results, String fileName)
-	{
-		XSSFWorkbook outputExcel = new XSSFWorkbook();
-		
-		XSSFSheet resultSheet = outputExcel.createSheet();
-		
-		// start of header
-		XSSFRow headerRow = resultSheet.createRow(0);
-
-		// header for number of cities
-		XSSFCell sizeHeader = headerRow.createCell(0);
-		sizeHeader.setCellValue("Graph Size");
-		
-		// header for graph density
-		XSSFCell densityHeader = headerRow.createCell(1);
-		densityHeader.setCellValue("Graph Density");
-				
-		// header for number of non-stop flights
-		XSSFCell flightsHeader = headerRow.createCell(2);
-		flightsHeader.setCellValue("Num Of Non-Stop Flights");
-		
-		// header for running time
-		XSSFCell searchTimeHeader = headerRow.createCell(3);
-		searchTimeHeader.setCellValue("Search Time");
-		// end of header
-		
-		for(int i = 0; i < results.size(); ++i)
-		{
-			Result outputResult = results.get(i);
-			
-			XSSFRow newRow = resultSheet.createRow(i+1);
-			
-			// number of cities
-			XSSFCell graphSizeCell = newRow.createCell(0);
-			graphSizeCell.setCellValue(outputResult.getGraphSize());
-			
-			// number of non-stop flights
-			XSSFCell graphDensityCell = newRow.createCell(1);
-			graphDensityCell.setCellValue(outputResult.getDensity());
-			
-			// number of non-stop flights
-			XSSFCell graphNumOfNonStopFlightsCell = newRow.createCell(2);
-			graphNumOfNonStopFlightsCell.setCellValue(outputResult.getNumOfNonStopFlights());
-			
-			// running time
-			XSSFCell searchTimeCell = newRow.createCell(3);
-			searchTimeCell.setCellValue(outputResult.getSearchTime());
-		}
-		
-		for(int i = 0; i < 4; ++i)
-		{
-			resultSheet.autoSizeColumn(i);
-		}
-		
-		try
-		{
-			File outputFile = new File(fileName);
-			FileOutputStream fileOS = new FileOutputStream(outputFile);
-			outputExcel.write(fileOS);
-			
-			fileOS.close();
-			outputExcel.close();
-		}
-		catch(FileNotFoundException e)
-		{
-			System.out.println("File is opened");
-		}
-		catch(IOException e)
-		{
-			e.getMessage();
-		}
-
-		System.out.println("Result written to file successfully");
-	}
 	
 	/**
 	 * This method sorts the result so that interquartile mean of Search Times can be obtained.

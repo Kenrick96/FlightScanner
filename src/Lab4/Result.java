@@ -24,6 +24,7 @@ public class Result
 		this.numOfNonStopFlights = numOfNonStopFlights; 
 	}
 	
+	// standard getters and setters
 	public int getGraphSize() { return graphSize; }
 	public void setGraphSize(int graphSize) { this.graphSize = graphSize; }
 	

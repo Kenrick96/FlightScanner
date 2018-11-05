@@ -1,6 +1,5 @@
 package Lab4;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -110,6 +109,8 @@ public class Searcher
 	}
 
 	/**
+	 * Does not work correct, as cityVisitedFrom is overwritten each time a new route is found.
+	 * 
 	 * This method returns the shortest route between a source and destination in a
 	 * graph using Depth-First Search. Linked-List L is used as a stack for the
 	 * order of visiting, as well as to prevent revisits. This method makes use of

@@ -1,11 +1,7 @@
 package Lab4;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * This is the generator that randomly creates graphs according to size and

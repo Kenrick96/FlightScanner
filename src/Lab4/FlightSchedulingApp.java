@@ -7,6 +7,8 @@ import java.util.Scanner;
  * This class takes source and destination cities as input from user, 
  * and finds the shortest route between source and destination in the graph.
  * 
+ * last-updated: 2018-11-05
+ * 
  * @author Jason
  *
  */
@@ -91,6 +93,8 @@ public class FlightSchedulingApp
 		LinkedList<City> shortestRoute= searcher.bfsShortestRoute(sourceCity, destinationCity, dummyResult);
 		
 		FlightScheduling.checkAndPrintPath(shortestRoute, dummyResult);
+		
+		sc.close();
 	}
 
 }

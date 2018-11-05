@@ -2,9 +2,6 @@ package tests;
 
 import java.io.FileNotFoundException;
 
-import Lab4.Graph;
-import Lab4.GraphGenerator;
-
 public class TestGraphGenerator {
 	public static void main(String[] args) throws FileNotFoundException
 	{
