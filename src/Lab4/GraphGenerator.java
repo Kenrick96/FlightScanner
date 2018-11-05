@@ -59,57 +59,12 @@ public class GraphGenerator
 		}
 	}
 
-	// /**
-	// * Add cities to graph from a external file, this functions reads line by line
-	// * until reaching the graph size
-	// *
-	// * @param fileName
-	// * @throws FileNotFoundException
-	// */
-	// public void readCities(String fileName) throws FileNotFoundException
-	// {
-	// File file = new File(fileName);
-	// Scanner fileScanner = new Scanner(file);
-	//
-	// int cityCount = 0;
-	// while (cityCount < size)
-	// {
-	// if (fileScanner.hasNextLine())
-	// {
-	// String line = fileScanner.nextLine();
-	//
-	// Scanner lineScanner = new Scanner(line);
-	//
-	// int cityID;
-	// String cityName;
-	//
-	// if (lineScanner.hasNextInt())
-	// {
-	// cityID = lineScanner.nextInt();
-	//
-	// if (lineScanner.hasNext())
-	// {
-	// cityName = lineScanner.next();
-	//
-	// if (lineScanner.hasNext())
-	// cityName = cityName + " " + lineScanner.next();
-	//
-	// City newCity = new City(cityID, cityName);
-	// if (newCity != null)
-	// {
-	// graph.addCity(newCity);
-	// ++cityCount;
-	// }
-	// }
-	// }
-	// }
-	// }
-	// }
-
 	/**
 	 * This method increases the number of edges to the number required.
 	 * So, for a graph of the same size, if the density required is increased,
-	 * more edges would be added TO THE SAME GRAPH, instead of generating a new graph from scratch
+	 * more edges would be added TO THE SAME GRAPH, instead of generating a new graph from scratch.
+	 * 
+	 * Uses the adjacency matrix representation for the O(1) search time of whether 2 Cities are connected.
 	 * 
 	 */
 	public void buildNonStopFlights()
