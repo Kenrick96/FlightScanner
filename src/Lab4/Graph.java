@@ -102,6 +102,24 @@ public class Graph
 		}
 		return null;
 	}
+	
+	/**
+	 * Get city by ID
+	 * 
+	 * @param cityID
+	 * @return
+	 */
+	public City getCityByID(int cityID)
+	{
+		for (City c : cities)
+		{
+			if (c.getCityID() == cityID)
+			{
+				return c;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Get city by index

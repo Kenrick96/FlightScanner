@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * This is the generator that randomly creates graphs according to size and
- * density entered last-updated: 2018-11-04
+ * density entered last-updated: 2018-11-05
  * 
  * @author annie
  * @author Thomas Stephen Felix
@@ -41,7 +41,7 @@ public class GraphGenerator
 
 	}
 
-	public void setGraphDensity(double density)
+	public void setRequiredNumOfNonStopFlights(double density)
 	{
 		requiredNumOfNonStopFlights = (int) Math.round(density * size * (size - 1) / 2);
 	}

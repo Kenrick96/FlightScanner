@@ -10,10 +10,12 @@ import java.util.LinkedList;
  * @author Jason
  *
  */
-public class Searcher {
+public class Searcher
+{
 	private LinkedList<City> L; // used as queue in BFS, stack in DFS
 
-	public Searcher() {
+	public Searcher()
+	{
 		L = new LinkedList<City>();
 	}
 
@@ -29,11 +31,13 @@ public class Searcher {
 	 * @param destination
 	 * @return shortestRoute between source and destination
 	 */
-	private LinkedList<City> constructRoute(City source, City destination) {
+	private LinkedList<City> constructRoute(City source, City destination)
+	{
 		LinkedList<City> route = new LinkedList<City>();
 		City temp = destination;
 
-		while (!temp.equals(source)) {
+		while (!temp.equals(source))
+		{
 			route.addFirst(temp);
 
 			temp = temp.getCityVisitedFrom();
@@ -57,47 +61,49 @@ public class Searcher {
 	 * @param destination
 	 * @return shortestRoute between source and destination
 	 */
-	
-	public LinkedList<City> bfsShortestRoute(City source, City destination, Result result) {
-//		System.out.println("Searching...");
 
-			long startTime = System.nanoTime();
+	public LinkedList<City> bfsShortestRoute(City source, City destination, Result result)
+	{
+		// System.out.println("Searching...");
 
-			// start from the source
-			source.visit();
-			L.addLast(source);
+		long startTime = System.nanoTime();
 
-			while (!L.isEmpty()) {
-				City visitedCity = L.removeFirst(); // dequeue
+		// start from the source
+		source.visit();
+		L.addLast(source);
 
-				for (City neighbour : visitedCity.getNeighbors()) // BFS considers the neighbours of each node at each
-																	// level
+		while (!L.isEmpty())
+		{
+			City visitedCity = L.removeFirst(); // dequeue
+
+			for (City neighbour : visitedCity.getNeighbors()) // BFS considers the neighbours of each node at each
+																// level
+			{
+				if (!neighbour.isVisited()) // prevent revisits
 				{
-					if (!neighbour.isVisited()) // prevent revisits
+					// each city keep track of visiting city for construction of shortest route
+					neighbour.setCityVisitedFrom(visitedCity);
+
+					if (neighbour.equals(destination))
 					{
-						// each city keep track of visiting city for construction of shortest route
-						neighbour.setCityVisitedFrom(visitedCity);
+						long endTime = System.nanoTime();
+						result.setSearchTime(endTime - startTime);
+						L.clear();
+						return constructRoute(source, destination);
 
-						if (neighbour.equals(destination)) {
-							long endTime = System.nanoTime();
-							result.setSearchTime(endTime - startTime);
-							L.clear();
-							return constructRoute(source, destination);
-						
-						}
-
-						neighbour.visit(); // prevent revisits
-						L.addLast(neighbour); // enqueue this City in queue to visit its neighbours later
 					}
-					
-					neighbour.visit(); // prevent revisits
-					L.addLast(neighbour); // enqueue this neighbouring City in queue to visit its neighbours later
-				}
-			}
 
-			long endTime = System.nanoTime();
-			result.setSearchTime(endTime - startTime);
-	
+					neighbour.visit(); // prevent revisits
+					L.addLast(neighbour); // enqueue this City in queue to visit its neighbours later
+				}
+
+				neighbour.visit(); // prevent revisits
+				L.addLast(neighbour); // enqueue this neighbouring City in queue to visit its neighbours later
+			}
+		}
+
+		long endTime = System.nanoTime();
+		result.setSearchTime(endTime - startTime);
 
 		L.clear();
 		return null; // no path found
@@ -118,8 +124,9 @@ public class Searcher {
 	 * @param destination
 	 * @return shortestRoute between source and destination
 	 */
-	public LinkedList<City> dfsShortestRoute(City source, City destination, Result result) {
-//		System.out.println("Searching...");
+	public LinkedList<City> dfsShortestRoute(City source, City destination, Result result)
+	{
+		// System.out.println("Searching...");
 		long startTime = System.nanoTime();
 		LinkedList<City> shortestRoute = null;
 
@@ -127,19 +134,23 @@ public class Searcher {
 		source.visit();
 		L.addLast(source);
 
-		while (!L.isEmpty()) {
+		while (!L.isEmpty())
+		{
 			City visitedCity = L.removeFirst(); // pop from stack
 
-			for (City neighbour : visitedCity.getNeighbors()) {
+			for (City neighbour : visitedCity.getNeighbors())
+			{
 				if (!neighbour.isVisited()) // prevent revisits
 				{
 					// each city keep track of visiting city for construction of shortest route
 					neighbour.setCityVisitedFrom(visitedCity);
 
-					if (neighbour.equals(destination)) {
+					if (neighbour.equals(destination))
+					{
 						LinkedList<City> possibleShortest = constructRoute(source, destination);
 
-						if (shortestRoute == null || (possibleShortest.size() < shortestRoute.size())) {
+						if (shortestRoute == null || (possibleShortest.size() < shortestRoute.size()))
+						{
 							shortestRoute = possibleShortest;
 						}
 

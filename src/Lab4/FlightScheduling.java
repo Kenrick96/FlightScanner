@@ -24,7 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * 
  * last updated: 2018-11-04
  * 
- * @author Jason
+ * @author Jason, Stephen
  *
  */
 public class FlightScheduling
@@ -75,7 +75,7 @@ public class FlightScheduling
 						" , density: " + String.format("%.1f", graphDensity) + 
 						"\n----------------------------------------------------------------------");
 				// start of graph generation
-				graphGenerator.setGraphDensity(graphDensity);
+				graphGenerator.setRequiredNumOfNonStopFlights(graphDensity);
 				Graph graph = graphGenerator.generateGraph();
 //				graph.printGraph();
 				
@@ -224,6 +224,13 @@ public class FlightScheduling
 
 		System.out.println("Result written to file successfully");
 	}
+	
+	/**
+	 * This method sorts the result so that interquartile mean of Search Times can be obtained.
+	 * 
+	 * @param results
+	 * @param noOfIterations
+	 */
 	public static void sort(Result[] results,int noOfIterations)
 	{
 		for(int i=0;i<noOfIterations;i++)
@@ -234,6 +241,14 @@ public class FlightScheduling
 				results[j]= temp;
 			}
 	}
+	
+	/**
+	 * This method returns the interquartile mean of Search Time for graphs of a specific size and density
+	 * 
+	 * @param results
+	 * @param noOfIterations
+	 * @return
+	 */
 	public static long retInterquartile(Result[] results,int noOfIterations)
 	{long sum=0;
 	
