@@ -3,7 +3,7 @@
 FlightSchedulingApp - console application
 FlightScheduling - test BFS' and DFS' search time on graphs of various size and density
 
-This project is done for Yr2018-19 Sem 1 CZ2001 Lab.
+This project is done for Yr2018-19 Sem 1 CZ2001 Lab 4.
 
 dependencies: 
 Apache POI JARs in the JARs folder
